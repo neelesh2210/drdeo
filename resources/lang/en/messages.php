@@ -1631,4 +1631,5 @@
   'We have sent you this email to notify that you have a new order. You will be able to see your orders after login to your panel' => 'We have sent you this email to notify that you have a new order. You will be able to see your orders after login to your panel',
   'New order ID for you' => 'New order ID for you',
   'You will not be able to revert this1' => 'You will not be able to revert this1',
+  'MRP Price' => 'MRP Price',
 );

@@ -143,26 +143,19 @@
                                         <label for="name">HSN No.</label>
                                         <input type="text" name="hsn" class="form-control" id="hsn" value="<?php echo e(old('hsn')); ?>" placeholder="HSN No." required>
                                     </div>
-    
+
                                     <div class="col-md-6">
                                         <label for="name">Disease</label>
-                                        <input type="text" name="disease" class="form-control" id="disease" value="<?php echo e(old('disease')); ?>" placeholder="Disease(comma seperated)" required>
+                                        <select name="disease[]" class="js-example-basic-multiple js-states js-example-responsive form-control" id="disease" required multiple>
+                                            <option value="">Select Disease</option>
+                                            <?php $__currentLoopData = App\Model\Disease::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $disease): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($disease->id); ?>"><?php echo e($disease->name); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
                                     </div>
                                 </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="name">Batch No.</label>
-                                            <input type="text" name="batch" class="form-control" id="batch" value="<?php echo e(old('batch')); ?>" placeholder="Batch No.">
-                                        </div>
-        
-                                        <div class="col-md-6">
-                                            <label for="name">Expiry Date</label>
-                                            <input type="date" name="exp" class="form-control" id="exp" value="<?php echo e(old('exp')); ?>" placeholder="Expire Date">
-                                        </div>
-                                    </div>
-                                    </div>
+                                
                         </div>
                     </div>
 
@@ -174,7 +167,7 @@
 
                             <div class="form-group">
                                 <div class="row">
-                                  
+
 
                                     <div class="col-md-6">
                                         <label for="attributes" style="padding-bottom: 3px">
@@ -216,9 +209,9 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label
-                                            class="control-label"><?php echo e(\App\CPU\translate('Purchase price')); ?></label>
+                                            class="control-label"><?php echo e(\App\CPU\translate('MRP Price')); ?></label>
                                         <input type="number" min="0" step="0.01"
-                                               placeholder="<?php echo e(\App\CPU\translate('Purchase price')); ?>"
+                                               placeholder="<?php echo e(\App\CPU\translate('MRP Price')); ?>"
                                                value="<?php echo e(old('purchase_price')); ?>"
                                                name="purchase_price" class="form-control" required>
                                     </div>
@@ -227,16 +220,16 @@
                                     <div class="col-md-5">
                                         <label class="control-label"><?php echo e(\App\CPU\translate('Tax')); ?></label>
                                         <label class="badge badge-info"><?php echo e(\App\CPU\translate('Percent')); ?> ( % )</label>
-                                   
-                                               
+
+
                                     <select class="js-example-basic-multiple form-control" name="tax" required>
                                     <option value="5" >5%</option>
                                     <option value="12" >12%</option>
                                     <option value="18" >18%</option>
                                     <option value="22" >22%</option>
                                         </select>
-      
-      
+
+
                                         <input name="tax_type" value="percent" style="display: none">
                                     </div>
 
@@ -382,7 +375,7 @@
                 }
             });
 
-        
+
 
             $("#meta_img").spartanMultiImagePicker({
                 fieldName: 'meta_image',

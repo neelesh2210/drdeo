@@ -106,7 +106,7 @@ class ProductController extends BaseController
         $p->added_by = "admin";
         $p->name = $request->name[array_search('en', $request->lang)];
         $p->slug = Str::slug($request->name[array_search('en', $request->lang)], '-') . '-' . Str::random(6);
-        $p->disease = $request->disease;
+        $p->disease = json_encode($request->disease);
         $p->hsn = $request->hsn;
         $p->exp = $request->exp;
         $p->batch = $request->batch;
@@ -226,16 +226,16 @@ class ProductController extends BaseController
                 foreach ($request->file('images') as $img) {
                     $product_images[] = ImageManager::upload('product/', 'png', $img);
                 }
-                $p->images = json_encode($product_images);            
+                $p->images = json_encode($product_images);
 
             }
             if ($request->file('images')) {
                 foreach ($request->file('images') as $img) {
-                    $p->thumbnail = ImageManager::upload('product/thumbnail/', 'png', $img);    
+                    $p->thumbnail = ImageManager::upload('product/thumbnail/', 'png', $img);
                     break;
-                }            
+                }
 
-            }          
+            }
 
             $p->meta_title = $request->meta_title;
             $p->meta_description = $request->meta_description;
@@ -484,7 +484,7 @@ class ProductController extends BaseController
         $product->hsn = $request->hsn;
         $product->batch = $request->batch;
         $product->exp = $request->exp;
-        $product->disease = $request->disease;
+        $product->disease = json_encode($request->disease);
         $category = [];
         if ($request->category_id != null) {
             array_push($category, [
@@ -704,7 +704,7 @@ class ProductController extends BaseController
             return back();
         }
 
-        
+
         $data = [];
         $skip = ['youtube_video_url', 'details', 'thumbnail'];
         foreach ($collections as $collection) {
