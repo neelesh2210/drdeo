@@ -87,8 +87,13 @@ Route::group(['namespace' => 'api\v2', 'prefix' => 'v2'], function () {
 
         Route::post('register', [DoctorController::class, 'register']);
         Route::post('login', [DoctorController::class, 'login']);
-        Route::post('get_docotor_profile', [DoctorProfileController::class, 'getDocotorProfile'])->middleware('auth:sanctum');
-        Route::post('save_docotor_profile', [DoctorProfileController::class, 'saveDocotorProfile'])->middleware('auth:sanctum');
+
+        Route::middleware('auth:sanctum')->group( function () {
+
+            Route::post('get_docotor_profile', [DoctorProfileController::class, 'getDocotorProfile']);
+            Route::post('save_docotor_profile', [DoctorProfileController::class, 'saveDocotorProfile']);
+
+        });
 
     });
 
