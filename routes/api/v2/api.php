@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\v2\doctor\DoctorController;
+use App\Http\Controllers\api\v2\doctor\DoctorProfileController;
 
-Route::group(['namespace' => 'api\v2', 'prefix' => 'v2', 'middleware' => ['api_lang']], function () {
+Route::group(['namespace' => 'api\v2', 'prefix' => 'v2'], function () {
     Route::group(['prefix' => 'seller', 'namespace' => 'seller'], function () {
 
         Route::get('seller-info', 'SellerController@seller_info');
@@ -76,4 +78,20 @@ Route::group(['namespace' => 'api\v2', 'prefix' => 'v2', 'middleware' => ['api_l
             Route::put('update-fcm-token', 'DeliveryManController@update_fcm_token');
         });
     });
+
+
+
+    //Doctor Api
+
+    Route::group(['prefix' => 'doctor', 'namespace' => 'doctor'], function () {
+
+        Route::post('register', [DoctorController::class, 'register']);
+        Route::post('login', [DoctorController::class, 'login']);
+        Route::post('get_docotor_profile', [DoctorProfileController::class, 'getDocotorProfile'])->middleware('auth:sanctum');
+        Route::post('save_docotor_profile', [DoctorProfileController::class, 'saveDocotorProfile'])->middleware('auth:sanctum');
+
+    });
+
+
+
 });
