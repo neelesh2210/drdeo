@@ -22,17 +22,37 @@ class DoctorProfileController extends Controller
 
     public function saveDocotorProfile(Request $request)
     {
-        DoctorProfile::create([
-            'doctor_id'=>Auth::user()->id,
-            'title'=>$request->title,
-            'specialization'=>$request->specialization,
-            'experience'=>$request->experience,
-            'gender'=>$request->gender,
-        ]);
+        $doctor_profile=new DoctorProfile;
+        $doctor_profile->doctor_id=Auth::user()->id;
+        $doctor_profile->title=$request->title;
+        $doctor_profile->specialization=$request->specialization;
+        $doctor_profile->experience=$request->experience;
+        $doctor_profile->gender=$request->gender;
+        if(!empty($request->adhar_card))
+        {
+            $adhar_card = time().rand().$request->adhar_card->extension();
+            $request->adhar_card->move(public_path('doctor_documents'), $adhar_card);
+            $doctor_profile->adhar_card=$adhar_card;
+        }
+        if(!empty($request->pan_card))
+        {
+            $pan_card = time().rand().$request->pan_card->extension();
+            $request->pan_card->move(public_path('doctor_documents'), $pan_card);
+            $doctor_profile->pan_card=$pan_card;
+        }
+        if(!empty($request->degree))
+        {
+            $degree = time().rand().$request->degree->extension();
+            $request->degree->move(public_path('doctor_documents'), $degree);
+            $doctor_profile->degree=$degree;
+        }
 
-        $data=Doctor::where('id',Auth::user()->id)->with('doctor_profile')->first();
+        $doctor_profile->institute_name=$request->institute_name;
+        $doctor_profile->year_of_completion=$request->year_of_completion;
 
-        return response()->json(['data' => $data]);
+        $doctor_profile->save();
+
+        return response()->json(['data' => $doctor_profile->with('doctor')->get()]);
     }
 
 }

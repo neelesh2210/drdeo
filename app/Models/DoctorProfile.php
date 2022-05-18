@@ -23,4 +23,9 @@ class DoctorProfile extends Model
         'year_of_completion',
     ];
 
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class);
+    }
+
 }
