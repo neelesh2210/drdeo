@@ -15,6 +15,7 @@ class DoctorProfileController extends Controller
 
     public function getDocotorProfile()
     {
+         return $slot=['morning'=>array('start_time'=>'09:00 AM','end_time'=>'11:00 AM','status'=>1),'evening'=>array('start_time'=>'05:00 PM','end_time'=>'9:00 PM','status'=>1)];
         $data=Doctor::where('id',Auth::user()->id)->with('doctor_profile')->first();
 
         return response()->json(['data' => $data]);
