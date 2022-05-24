@@ -23,37 +23,46 @@ class DoctorProfileController extends Controller
 
     public function saveDocotorProfile(Request $request)
     {
-        $doctor_profile=new DoctorProfile;
-        $doctor_profile->doctor_id=Auth::user()->id;
-        $doctor_profile->title=$request->title;
-        $doctor_profile->specialization=$request->specialization;
-        $doctor_profile->experience=$request->experience;
-        $doctor_profile->gender=$request->gender;
+        $input=$request->all();
+
+        $input['doctor_id']=Auth::user()->id;
         if(!empty($request->adhar_card))
         {
-            $adhar_card = time().rand().$request->adhar_card->extension();
+            $adhar_card = time().rand().'.'.$request->adhar_card->extension();
             $request->adhar_card->move(public_path('doctor_documents'), $adhar_card);
-            $doctor_profile->adhar_card=$adhar_card;
+            $input['adhar_card']=$adhar_card;
         }
         if(!empty($request->pan_card))
         {
-            $pan_card = time().rand().$request->pan_card->extension();
+            $pan_card = time().rand().'.'.$request->pan_card->extension();
             $request->pan_card->move(public_path('doctor_documents'), $pan_card);
-            $doctor_profile->pan_card=$pan_card;
+            $input['pan_card']=$pan_card;
         }
         if(!empty($request->degree))
         {
-            $degree = time().rand().$request->degree->extension();
+            $degree = time().rand().'.'.$request->degree->extension();
             $request->degree->move(public_path('doctor_documents'), $degree);
-            $doctor_profile->degree=$degree;
+            $input['degree']=$degree;
         }
 
-        $doctor_profile->institute_name=$request->institute_name;
-        $doctor_profile->year_of_completion=$request->year_of_completion;
+        DoctorProfile::create($input);
 
-        $doctor_profile->save();
+         $doctor_profile=DoctorProfile::where('doctor_id',Auth::user()->id)->with('doctor')->first();
 
-        return response()->json(['data' => $doctor_profile->with('doctor')->get()]);
+         if(!empty($doctor_profile->adhar_card))
+         {
+            $doctor_profile->adhar_card=public_path('doctor_documents/'.$doctor_profile->adhar_card);
+         }
+         if(!empty($doctor_profile->pan_card))
+         {
+            $doctor_profile->pan_card=public_path('doctor_documents/'.$doctor_profile->pan_card);
+         }
+         if(!empty($doctor_profile->degree))
+         {
+            $doctor_profile->degree=public_path('doctor_documents/'.$doctor_profile->degree);
+         }
+
+        return response()->json(['data' => $doctor_profile]);
     }
 
 }
