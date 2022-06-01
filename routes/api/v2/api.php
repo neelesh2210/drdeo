@@ -92,9 +92,10 @@ Route::group(['namespace' => 'api\v2', 'prefix' => 'v2'], function () {
 
             Route::post('get_docotor_profile', [DoctorProfileController::class, 'getDocotorProfile']);
             Route::post('save_docotor_profile', [DoctorProfileController::class, 'saveDocotorProfile']);
+            Route::post('get_docotor_slot', [DoctorProfileController::class, 'getDocotorSlot']);
+            Route::post('save_docotor_slot', [DoctorProfileController::class, 'saveDocotorSlot']);
 
         });
-
     });
 
 
