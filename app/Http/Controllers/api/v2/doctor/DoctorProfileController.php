@@ -68,15 +68,18 @@ class DoctorProfileController extends Controller
     public function getDocotorSlot(Request $request)
     {
         $data=DoctorSlot::where('doctor_id',Auth::user()->id)->first();
-        $data->monday=json_decode($data->monday);
-        $data->tuesday=json_decode($data->tuesday);
-        $data->wednesday=json_decode($data->wednesday);
-        $data->thursday=json_decode($data->thursday);
-        $data->friday=json_decode($data->friday);
-        $data->saturday=json_decode($data->saturday);
-        $data->sunday=json_decode($data->sunday);
+        if(!empty($data))
+        {
+            $data->monday=json_decode($data->monday);
+            $data->tuesday=json_decode($data->tuesday);
+            $data->wednesday=json_decode($data->wednesday);
+            $data->thursday=json_decode($data->thursday);
+            $data->friday=json_decode($data->friday);
+            $data->saturday=json_decode($data->saturday);
+            $data->sunday=json_decode($data->sunday);
+        }
 
-        return $data;
+        return response()->json(['data' => $data]);
 
     }
 
