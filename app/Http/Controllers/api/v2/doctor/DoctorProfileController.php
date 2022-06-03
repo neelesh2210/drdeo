@@ -45,24 +45,32 @@ class DoctorProfileController extends Controller
             $input['degree']=$degree;
         }
 
-        DoctorProfile::create($input);
-
-        $doctor_profile=DoctorProfile::where('doctor_id',Auth::user()->id)->with('doctor')->first();
-
-        if(!empty($doctor_profile->adhar_card))
+        $check_doctor=DoctorProfile::where('doctor_id',Auth::user()->id)->first();
+        if(!empty($check_doctor))
         {
-            $doctor_profile->adhar_card=public_path('doctor_documents/'.$doctor_profile->adhar_card);
+            DoctorProfile::where('doctor_id',Auth::user()->id)->update($input);
         }
-        if(!empty($doctor_profile->pan_card))
+        else
         {
-            $doctor_profile->pan_card=public_path('doctor_documents/'.$doctor_profile->pan_card);
-        }
-        if(!empty($doctor_profile->degree))
-        {
-            $doctor_profile->degree=public_path('doctor_documents/'.$doctor_profile->degree);
+            DoctorProfile::create($input);
         }
 
-        return response()->json(['data' => $doctor_profile]);
+        $doctor=Doctor::where('id',Auth::user()->id)->with('doctor_profile')->first();
+
+        if(!empty($doctor->doctor_profile->adhar_card))
+        {
+            $doctor->doctor_profile->adhar_card=public_path('doctor_documents/'.$doctor->doctor_profile->adhar_card);
+        }
+        if(!empty($doctor->doctor_profile->pan_card))
+        {
+            $doctor->doctor_profile->pan_card=public_path('doctor_documents/'.$doctor->doctor_profile->pan_card);
+        }
+        if(!empty($doctor->doctor_profile->degree))
+        {
+            $doctor->doctor_profile->degree=public_path('doctor_documents/'.$doctor->doctor_profile->degree);
+        }
+
+        return response()->json(['data' => $doctor]);
     }
 
     public function getDocotorSlot(Request $request)

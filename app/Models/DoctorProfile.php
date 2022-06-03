@@ -21,6 +21,12 @@ class DoctorProfile extends Model
         'degree',
         'institute_name',
         'year_of_completion',
+        'city',
+        'address',
+        'registration_id',
+        'registration_council_name',
+        'year_of_registration',
+        'registration_document'
     ];
 
     public function doctor()
