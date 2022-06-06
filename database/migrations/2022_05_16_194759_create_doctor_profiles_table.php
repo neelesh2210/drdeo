@@ -21,6 +21,8 @@ class CreateDoctorProfilesTable extends Migration
             $table->string('designation')->nullable();
             $table->string('experience')->nullable();
             $table->string('gender')->nullable();
+            $table->string('degree_name')->nullable();
+            $table->string('profile_name')->nullable();
             $table->string('adhar_card')->nullable();
             $table->string('pan_card')->nullable();
             $table->string('degree')->nullable();

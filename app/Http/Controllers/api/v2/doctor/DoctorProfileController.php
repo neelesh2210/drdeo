@@ -33,6 +33,10 @@ class DoctorProfileController extends Controller
         {
             $data->doctor_profile->registration_document=asset('doctor_documents/'.$data->doctor_profile->registration_document);
         }
+        if(!empty($data->doctor_profile->profile_photo))
+        {
+            $data->doctor_profile->profile_photo=asset('doctor_documents/'.$data->doctor_profile->profile_photo);
+        }
 
         return response()->json(['data' => $data]);
     }
@@ -66,6 +70,12 @@ class DoctorProfileController extends Controller
             $request->registration_document->move(public_path('doctor_documents'), $registration_document);
             $input['registration_document']=$registration_document;
         }
+        if(!empty($request->profile_photo))
+        {
+            $profile_photo = time().rand().'.'.$request->profile_photo->extension();
+            $request->profile_photo->move(public_path('doctor_documents'), $profile_photo);
+            $input['profile_photo']=$profile_photo;
+        }
 
         $check_doctor=DoctorProfile::where('doctor_id',Auth::user()->id)->first();
         if(!empty($check_doctor))
@@ -94,6 +104,10 @@ class DoctorProfileController extends Controller
         if(!empty($doctor->doctor_profile->registration_document))
         {
             $doctor->doctor_profile->registration_document=asset('doctor_documents/'.$doctor->doctor_profile->registration_document);
+        }
+        if(!empty($doctor->doctor_profile->profile_photo))
+        {
+            $doctor->doctor_profile->profile_photo=asset('doctor_documents/'.$doctor->doctor_profile->profile_photo);
         }
 
         return response()->json(['data' => $doctor]);

@@ -16,6 +16,8 @@ class DoctorProfile extends Model
         'designation',
         'experience',
         'gender',
+        'degree_name',
+        'profile_name',
         'adhar_card',
         'pan_card',
         'degree',
