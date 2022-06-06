@@ -18,7 +18,7 @@ class DoctorController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'phone_number' => 'required|string|min:10|max:10',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:doctors',
             'password' => 'required|string|min:8',
         ]);
 
