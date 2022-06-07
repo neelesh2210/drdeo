@@ -278,4 +278,76 @@ class OrderController extends Controller
         $token =  Shiprocket::getToken();
         return $response =  Shiprocket::order($token)->create($orderDetails);
     }
+    
+    
+    public function storePickrr(Request $request,$order_id)
+    {
+        $order=Order::find($order_id);
+        $order->weight = $request->weight;
+        $order->length = $request->length;
+        $order->width = $request->width;
+        $order->height = $request->height;
+        $order->save();
+
+        $order=Order::where('id',$order_id)->first();
+
+        $data=array();
+        foreach ($order->details as $key => $orderDetail)
+        {
+            array_push($data,['name'=>$orderDetail->product->name,'hsn'=>$orderDetail->product->hsn,'selling_price'=>$orderDetail->price,'units'=>$orderDetail->qty,'discount'=>'','tax'=>'','sku'=>$orderDetail->product->name]);
+        }
+        
+        $params = array(
+        'auth_token' => 'c17fdea3d536052d6d7cd468f95dc80c803893',
+        'item_name' => 'Kryptonite',
+        'from_name' => 'Bruce Wayne',
+        'from_phone_number' => '7351857301',
+        'from_address' => 'Basement, 1007 Mountain Drive',
+        'from_pincode' => '801504',
+        'pickup_gstin' => 'XXXXXXXXXX',
+        'to_name' => 'Clark Kent',
+        'to_phone_number' => '7738828473',
+        'to_pincode' => '801503',
+        'to_address' => '344 Clinton Street',
+        'quantity' => 1,
+        'invoice_value' => 1,
+        'cod_amount' => 1,
+        'client_order_id' => 'WAYNE007',
+        'item_breadth' => 10,
+        'item_length' => 10,
+        'item_height' => 5,
+        'item_weight' => 0.5,
+        'item_tax_percentage' => 12,
+        'is_reverse' => False
+            );
+       
+        return createShipment($params);
+    }
+     public function createShipment($params)
+    {
+        try{
+            $json_params = json_encode( $params );
+            $url = 'https://www.pickrr.com/api/place-order/';
+            //open connection
+            $ch = curl_init();
+            //set the url, number of POST vars, POST data
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch,CURLOPT_POSTFIELDS, $json_params);
+            curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+            curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+            //execute post
+            $result = curl_exec($ch);
+            $result = json_decode($result, true);
+            //close connection
+            curl_close($ch);
+            if(gettype($result)!="array")
+              throw new \Exception( print_r($result, true) . "Problem in connecting with Pickrr");
+            if($result['err']!="")
+              throw new \Exception($result['err']);
+            return $result['tracking_id'];
+        }
+        catch (\Exception $e) {
+          echo $e;
+            }
+    }
 }
