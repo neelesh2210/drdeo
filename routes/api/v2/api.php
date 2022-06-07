@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\v1\CustomerController;
 use App\Http\Controllers\api\v2\doctor\DoctorController;
 use App\Http\Controllers\api\v2\doctor\DoctorProfileController;
 
@@ -96,6 +97,13 @@ Route::group(['namespace' => 'api\v2', 'prefix' => 'v2'], function () {
             Route::post('save_docotor_slot', [DoctorProfileController::class, 'saveDocotorSlot']);
 
         });
+    });
+
+
+    Route::group(['prefix' => 'customer', 'middleware' => 'auth:api'], function () {
+
+        Route::post('get_doctor_list', [CustomerController::class, 'getDoctorList']);
+
     });
 
 

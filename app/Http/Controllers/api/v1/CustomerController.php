@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers\api\v1;
 
-use App\CPU\CustomerManager;
-use App\CPU\Helpers;
-use App\CPU\ImageManager;
-use App\Http\Controllers\Controller;
-use App\Model\Order;
-use App\Model\OrderDetail;
-use App\Model\ShippingAddress;
-use App\Model\SupportTicket;
-use App\Model\SupportTicketConv;
-use App\Model\Wishlist;
 use App\User;
+use App\CPU\Helpers;
+use App\Model\Order;
+use App\Models\Doctor;
+use App\Model\Wishlist;
+use App\CPU\ImageManager;
+use App\Model\OrderDetail;
+use App\CPU\CustomerManager;
+use App\Model\SupportTicket;
 use Illuminate\Http\Request;
+use App\Model\ShippingAddress;
 use Illuminate\Support\Carbon;
+use function App\CPU\translate;
+use App\Model\SupportTicketConv;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Intervention\Image\Facades\Image;
-use function App\CPU\translate;
 
 class CustomerController extends Controller
 {
@@ -270,4 +271,36 @@ class CustomerController extends Controller
 
         return response()->json(['message' => translate('successfully updated!')], 200);
     }
+
+    public function getDoctorList(Request $request)
+    {
+        $list=Doctor::with('doctor_profile')->get(['id','name','email','phone_number']);
+
+        foreach($list as $data)
+        {
+            if(!empty($data->doctor_profile->adhar_card))
+            {
+                $data->doctor_profile->adhar_card=asset('doctor_documents/'.$data->doctor_profile->adhar_card);
+            }
+            if(!empty($data->doctor_profile->pan_card))
+            {
+                $data->doctor_profile->pan_card=asset('doctor_documents/'.$data->doctor_profile->pan_card);
+            }
+            if(!empty($data->doctor_profile->degree))
+            {
+                $data->doctor_profile->degree=asset('doctor_documents/'.$data->doctor_profile->degree);
+            }
+            if(!empty($data->doctor_profile->registration_document))
+            {
+                $data->doctor_profile->registration_document=asset('doctor_documents/'.$data->doctor_profile->registration_document);
+            }
+            if(!empty($data->doctor_profile->profile_photo))
+            {
+                $data->doctor_profile->profile_photo=asset('doctor_documents/'.$data->doctor_profile->profile_photo);
+            }
+        }
+
+        return response()->json(['list' => $list]);
+    }
+
 }
