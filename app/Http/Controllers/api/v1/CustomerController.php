@@ -300,7 +300,7 @@ class CustomerController extends Controller
             }
         }
 
-        return response()->json(['list' => $list]);
+        return $list;
     }
 
 }
