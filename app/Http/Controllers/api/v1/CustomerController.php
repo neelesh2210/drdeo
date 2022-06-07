@@ -274,7 +274,7 @@ class CustomerController extends Controller
 
     public function getDoctorList(Request $request)
     {
-        $list=Doctor::with('doctor_profile')->get(['id','name','email','phone_number']);
+        $list=Doctor::with('doctor_profile')->paginate(15,['id','name','email','phone_number']);
 
         foreach($list as $data)
         {
