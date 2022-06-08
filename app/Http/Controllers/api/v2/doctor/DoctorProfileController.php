@@ -134,7 +134,9 @@ class DoctorProfileController extends Controller
     public function saveDocotorSlot(Request $request)
     {
         DoctorSlot::updateOrCreate([
-            'doctor_id'=>Auth::user()->id],[
+            'doctor_id'=>Auth::user()->id
+        ],
+        [
             'monday'=>$request->monday,
             'tuesday'=>$request->tuesday,
             'wednesday'=>$request->wednesday,
