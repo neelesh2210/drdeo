@@ -9,6 +9,7 @@ use App\Models\Doctor;
 use App\Model\Wishlist;
 use App\CPU\ImageManager;
 use App\Model\OrderDetail;
+use App\Models\DoctorSlot;
 use App\CPU\CustomerManager;
 use App\Model\SupportTicket;
 use Illuminate\Http\Request;
@@ -301,6 +302,56 @@ class CustomerController extends Controller
         }
 
         return $list;
+    }
+
+    public function getDoctorSlot(Request $request)
+    {
+        $doctor_slot=DoctorSlot::where('doctor_id',$request->doctor_id)->first();
+
+        $doctor_slot->monday=json_decode($doctor_slot->monday);
+        $doctor_slot->monday->morning->slot= $this->SplitTime($doctor_slot->monday->morning->start_time, $doctor_slot->monday->morning->end_time, "30");
+        $doctor_slot->monday->evening->slot= $this->SplitTime($doctor_slot->monday->evening->start_time, $doctor_slot->monday->evening->end_time, "30");
+
+        $doctor_slot->tuesday=json_decode($doctor_slot->tuesday);
+        $doctor_slot->tuesday->morning->slot= $this->SplitTime($doctor_slot->tuesday->morning->start_time, $doctor_slot->tuesday->morning->end_time, "30");
+        $doctor_slot->tuesday->evening->slot= $this->SplitTime($doctor_slot->tuesday->evening->start_time, $doctor_slot->tuesday->evening->end_time, "30");
+
+        $doctor_slot->wednesday=json_decode($doctor_slot->wednesday);
+        $doctor_slot->wednesday->morning->slot= $this->SplitTime($doctor_slot->wednesday->morning->start_time, $doctor_slot->wednesday->morning->end_time, "30");
+        $doctor_slot->wednesday->evening->slot= $this->SplitTime($doctor_slot->wednesday->evening->start_time, $doctor_slot->wednesday->evening->end_time, "30");
+
+        $doctor_slot->thursday=json_decode($doctor_slot->thursday);
+        $doctor_slot->thursday->morning->slot= $this->SplitTime($doctor_slot->thursday->morning->start_time, $doctor_slot->thursday->morning->end_time, "30");
+        $doctor_slot->thursday->evening->slot= $this->SplitTime($doctor_slot->thursday->evening->start_time, $doctor_slot->thursday->evening->end_time, "30");
+
+        $doctor_slot->friday=json_decode($doctor_slot->friday);
+        $doctor_slot->friday->morning->slot= $this->SplitTime($doctor_slot->friday->morning->start_time, $doctor_slot->friday->morning->end_time, "30");
+        $doctor_slot->friday->evening->slot= $this->SplitTime($doctor_slot->friday->evening->start_time, $doctor_slot->friday->evening->end_time, "30");
+
+        $doctor_slot->saturday=json_decode($doctor_slot->saturday);
+        $doctor_slot->saturday->morning->slot= $this->SplitTime($doctor_slot->saturday->morning->start_time, $doctor_slot->saturday->morning->end_time, "30");
+        $doctor_slot->saturday->evening->slot= $this->SplitTime($doctor_slot->saturday->evening->start_time, $doctor_slot->saturday->evening->end_time, "30");
+
+        $doctor_slot->sunday=json_decode($doctor_slot->sunday);
+        $doctor_slot->sunday->morning->slot= $this->SplitTime($doctor_slot->sunday->morning->start_time, $doctor_slot->sunday->morning->end_time, "30");
+        $doctor_slot->sunday->evening->slot= $this->SplitTime($doctor_slot->sunday->evening->start_time, $doctor_slot->sunday->evening->end_time, "30");
+
+        return $doctor_slot;
+    }
+
+    public function SplitTime($StartTime, $EndTime, $Duration="30"){
+        $ReturnArray = array ();// Define output
+        $StartTime    = strtotime ($StartTime); //Get Timestamp
+        $EndTime      = strtotime ($EndTime); //Get Timestamp
+        //return [$StartTime,$EndTime];
+        $AddMins  = $Duration * 60;
+
+        while ($StartTime <= $EndTime) //Run loop
+        {
+            $ReturnArray[] = ['time'=>date ("G:i", $StartTime),'status'=>1];
+            $StartTime += $AddMins; //Endtime check
+        }
+        return $ReturnArray;
     }
 
 }
