@@ -20,4 +20,14 @@ class DoctorSlot extends Model
         'sunday'
     ];
 
+    public function doctor_profile()
+    {
+        return $this->belongsTo(DoctorProfile::class,'doctor_id','doctor_id');
+    }
+
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class,'doctor_id');
+    }
+
 }

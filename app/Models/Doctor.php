@@ -19,6 +19,10 @@ class Doctor extends Authenticatable
         'password',
     ];
 
+    protected $hidden = [
+        'password',
+    ];
+
     public function doctor_profile()
     {
         return $this->hasOne(DoctorProfile::class,'doctor_id');

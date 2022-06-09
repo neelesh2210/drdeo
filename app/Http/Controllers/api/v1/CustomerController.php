@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\User;
+use Carbon\Carbon;
 use App\CPU\Helpers;
 use App\Model\Order;
 use App\Models\Doctor;
@@ -14,7 +15,6 @@ use App\CPU\CustomerManager;
 use App\Model\SupportTicket;
 use Illuminate\Http\Request;
 use App\Model\ShippingAddress;
-use Illuminate\Support\Carbon;
 use function App\CPU\translate;
 use App\Model\SupportTicketConv;
 use Illuminate\Support\Facades\DB;
@@ -306,49 +306,118 @@ class CustomerController extends Controller
 
     public function getDoctorSlot(Request $request)
     {
-        $doctor_slot=DoctorSlot::where('doctor_id',$request->doctor_id)->first();
+        $day_array=['id','doctor_id'];
+        for($i=0;$i<=6;$i++)
+        {
+            $day=strtolower(Carbon::now()->addDays($i)->format('l'));
+            array_push($day_array,$day);
+        }
+        $doctor_slot=DoctorSlot::where('doctor_id',$request->doctor_id)->with('doctor','doctor_profile')->first($day_array);
+        $date=Carbon::now();
+        $day=strtolower(Carbon::now()->format('l'));
+        $doctor_slot->$day=json_decode($doctor_slot->$day);
+        $doctor_slot->$day->morning->date=$date->format('d-m-Y');
+        $doctor_slot->$day->morning->slot= $this->SplitTime($doctor_slot->$day->morning->start_time, $doctor_slot->$day->morning->end_time, "30",$date);
+        $doctor_slot->$day->evening->date=$date->format('d-m-Y');
+        $doctor_slot->$day->evening->slot= $this->SplitTime($doctor_slot->$day->evening->start_time, $doctor_slot->$day->evening->end_time, "30",$date);
 
-        $doctor_slot->monday=json_decode($doctor_slot->monday);
-        $doctor_slot->monday->morning->slot= $this->SplitTime($doctor_slot->monday->morning->start_time, $doctor_slot->monday->morning->end_time, "30");
-        $doctor_slot->monday->evening->slot= $this->SplitTime($doctor_slot->monday->evening->start_time, $doctor_slot->monday->evening->end_time, "30");
+        $day=strtolower(Carbon::now()->addDays(1)->format('l'));
+        $doctor_slot->$day=json_decode($doctor_slot->$day);
+        $doctor_slot->$day->morning->date=$date->addDays(1)->format('d-m-Y');
+        $doctor_slot->$day->morning->slot= $this->SplitTime($doctor_slot->$day->morning->start_time, $doctor_slot->$day->morning->end_time, "30",$date);
+        $doctor_slot->$day->evening->date=$date->format('d-m-Y');
+        $doctor_slot->$day->evening->slot= $this->SplitTime($doctor_slot->$day->evening->start_time, $doctor_slot->$day->evening->end_time, "30",$date);
 
-        $doctor_slot->tuesday=json_decode($doctor_slot->tuesday);
-        $doctor_slot->tuesday->morning->slot= $this->SplitTime($doctor_slot->tuesday->morning->start_time, $doctor_slot->tuesday->morning->end_time, "30");
-        $doctor_slot->tuesday->evening->slot= $this->SplitTime($doctor_slot->tuesday->evening->start_time, $doctor_slot->tuesday->evening->end_time, "30");
+        $day=strtolower(Carbon::now()->addDays(2)->format('l'));
+        $doctor_slot->$day=json_decode($doctor_slot->$day);
+        $doctor_slot->$day->morning->date=$date->addDays(1)->format('d-m-Y');
+        $doctor_slot->$day->morning->slot= $this->SplitTime($doctor_slot->$day->morning->start_time, $doctor_slot->$day->morning->end_time, "30",$date);
+        $doctor_slot->$day->evening->date=$date->format('d-m-Y');
+        $doctor_slot->$day->evening->slot= $this->SplitTime($doctor_slot->$day->evening->start_time, $doctor_slot->$day->evening->end_time, "30",$date);
 
-        $doctor_slot->wednesday=json_decode($doctor_slot->wednesday);
-        $doctor_slot->wednesday->morning->slot= $this->SplitTime($doctor_slot->wednesday->morning->start_time, $doctor_slot->wednesday->morning->end_time, "30");
-        $doctor_slot->wednesday->evening->slot= $this->SplitTime($doctor_slot->wednesday->evening->start_time, $doctor_slot->wednesday->evening->end_time, "30");
+        $day=strtolower(Carbon::now()->addDays(3)->format('l'));
+        $doctor_slot->$day=json_decode($doctor_slot->$day);
+        $doctor_slot->$day->morning->date=$date->addDays(1)->format('d-m-Y');
+        $doctor_slot->$day->morning->slot= $this->SplitTime($doctor_slot->$day->morning->start_time, $doctor_slot->$day->morning->end_time, "30",$date);
+        $doctor_slot->$day->evening->date=$date->format('d-m-Y');
+        $doctor_slot->$day->evening->slot= $this->SplitTime($doctor_slot->$day->evening->start_time, $doctor_slot->$day->evening->end_time, "30",$date);
 
-        $doctor_slot->thursday=json_decode($doctor_slot->thursday);
-        $doctor_slot->thursday->morning->slot= $this->SplitTime($doctor_slot->thursday->morning->start_time, $doctor_slot->thursday->morning->end_time, "30");
-        $doctor_slot->thursday->evening->slot= $this->SplitTime($doctor_slot->thursday->evening->start_time, $doctor_slot->thursday->evening->end_time, "30");
+        $day=strtolower(Carbon::now()->addDays(4)->format('l'));
+        $doctor_slot->$day=json_decode($doctor_slot->$day);
+        $doctor_slot->$day->morning->date=$date->addDays(1)->format('d-m-Y');
+        $doctor_slot->$day->morning->slot= $this->SplitTime($doctor_slot->$day->morning->start_time, $doctor_slot->$day->morning->end_time, "30",$date);
+        $doctor_slot->$day->evening->date=$date->format('d-m-Y');
+        $doctor_slot->$day->evening->slot= $this->SplitTime($doctor_slot->$day->evening->start_time, $doctor_slot->$day->evening->end_time, "30",$date);
 
-        $doctor_slot->friday=json_decode($doctor_slot->friday);
-        $doctor_slot->friday->morning->slot= $this->SplitTime($doctor_slot->friday->morning->start_time, $doctor_slot->friday->morning->end_time, "30");
-        $doctor_slot->friday->evening->slot= $this->SplitTime($doctor_slot->friday->evening->start_time, $doctor_slot->friday->evening->end_time, "30");
+        $day=strtolower(Carbon::now()->addDays(5)->format('l'));
+        $doctor_slot->$day=json_decode($doctor_slot->$day);
+        $doctor_slot->$day->morning->date=$date->addDays(1)->format('d-m-Y');
+        $doctor_slot->$day->morning->slot= $this->SplitTime($doctor_slot->$day->morning->start_time, $doctor_slot->$day->morning->end_time, "30",$date);
+        $doctor_slot->$day->evening->date=$date->format('d-m-Y');
+        $doctor_slot->$day->evening->slot= $this->SplitTime($doctor_slot->$day->evening->start_time, $doctor_slot->$day->evening->end_time, "30",$date);
 
-        $doctor_slot->saturday=json_decode($doctor_slot->saturday);
-        $doctor_slot->saturday->morning->slot= $this->SplitTime($doctor_slot->saturday->morning->start_time, $doctor_slot->saturday->morning->end_time, "30");
-        $doctor_slot->saturday->evening->slot= $this->SplitTime($doctor_slot->saturday->evening->start_time, $doctor_slot->saturday->evening->end_time, "30");
+        $day=strtolower(Carbon::now()->addDays(6)->format('l'));
+        $doctor_slot->$day=json_decode($doctor_slot->$day);
+        $doctor_slot->$day->morning->date=$date->addDays(1)->format('d-m-Y');
+        $doctor_slot->$day->morning->slot= $this->SplitTime($doctor_slot->$day->morning->start_time, $doctor_slot->$day->morning->end_time, "30",$date);
+        $doctor_slot->$day->evening->date=$date->format('d-m-Y');
+        $doctor_slot->$day->evening->slot= $this->SplitTime($doctor_slot->$day->evening->start_time, $doctor_slot->$day->evening->end_time, "30",$date);
 
-        $doctor_slot->sunday=json_decode($doctor_slot->sunday);
-        $doctor_slot->sunday->morning->slot= $this->SplitTime($doctor_slot->sunday->morning->start_time, $doctor_slot->sunday->morning->end_time, "30");
-        $doctor_slot->sunday->evening->slot= $this->SplitTime($doctor_slot->sunday->evening->start_time, $doctor_slot->sunday->evening->end_time, "30");
+        if(!empty($doctor_slot->doctor_profile->adhar_card))
+        {
+            $doctor_slot->doctor_profile->adhar_card=asset('doctor_documents/'.$doctor_slot->doctor_profile->adhar_card);
+        }
+        if(!empty($doctor_slot->doctor_profile->pan_card))
+        {
+            $doctor_slot->doctor_profile->pan_card=asset('doctor_documents/'.$doctor_slot->doctor_profile->pan_card);
+        }
+        if(!empty($doctor_slot->doctor_profile->degree))
+        {
+            $doctor_slot->doctor_profile->degree=asset('doctor_documents/'.$doctor_slot->doctor_profile->degree);
+        }
+        if(!empty($doctor_slot->doctor_profile->registration_document))
+        {
+            $doctor_slot->doctor_profile->registration_document=asset('doctor_documents/'.$doctor_slot->doctor_profile->registration_document);
+        }
+        if(!empty($doctor_slot->doctor_profile->profile_photo))
+        {
+            $doctor_slot->doctor_profile->profile_photo=asset('doctor_documents/'.$doctor_slot->doctor_profile->profile_photo);
+        }
 
+        //return response()->json(['doctor_slot' => $doctor_slot], 200);
         return $doctor_slot;
     }
 
-    public function SplitTime($StartTime, $EndTime, $Duration="30"){
+    public function SplitTime($StartTime, $EndTime, $Duration="30",$date){
         $ReturnArray = array ();// Define output
         $StartTime    = strtotime ($StartTime); //Get Timestamp
         $EndTime      = strtotime ($EndTime); //Get Timestamp
-        //return [$StartTime,$EndTime];
         $AddMins  = $Duration * 60;
+
+        //return [$date->format('d-m-Y'),Carbon::now()->format('d-m-Y')];
 
         while ($StartTime <= $EndTime) //Run loop
         {
-            $ReturnArray[] = ['time'=>date ("G:i", $StartTime),'status'=>1];
+            if($date->format('d-m-Y') == Carbon::now()->format('d-m-Y'))
+            {
+                //return [Carbon::now()->format('H:i'),date ("H:i", $StartTime)];
+                if(Carbon::now()->format('H:i') <= date ("H:i", $StartTime))
+                {
+                    $status=1;
+                }
+                else
+                {
+                    $status=0;
+                }
+            }
+            else
+            {
+                $status=1;
+            }
+            $ReturnArray[] = [
+                'time'=>date ("h:i A", $StartTime),
+                'status'=>$status
+            ];
             $StartTime += $AddMins; //Endtime check
         }
         return $ReturnArray;
