@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api\v1;
 
+use Auth;
 use App\User;
 use Carbon\Carbon;
 use App\CPU\Helpers;
@@ -17,6 +18,7 @@ use Illuminate\Http\Request;
 use App\Model\ShippingAddress;
 use function App\CPU\translate;
 use App\Model\SupportTicketConv;
+use App\Models\DoctorSlotBooking;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
@@ -394,13 +396,10 @@ class CustomerController extends Controller
         $EndTime      = strtotime ($EndTime); //Get Timestamp
         $AddMins  = $Duration * 60;
 
-        //return [$date->format('d-m-Y'),Carbon::now()->format('d-m-Y')];
-
         while ($StartTime <= $EndTime) //Run loop
         {
             if($date->format('d-m-Y') == Carbon::now()->format('d-m-Y'))
             {
-                //return [Carbon::now()->format('H:i'),date ("H:i", $StartTime)];
                 if(Carbon::now()->format('H:i') <= date ("H:i", $StartTime))
                 {
                     $status=1;
@@ -421,6 +420,18 @@ class CustomerController extends Controller
             $StartTime += $AddMins; //Endtime check
         }
         return $ReturnArray;
+    }
+
+    public function doctorSlotBooking(Request $request)
+    {
+        return DoctorSlotBooking::create([
+            'customer_id'=>Auth::user()->id,
+            'doctor_id'=>$request->doctor_id,
+            'date'=>$request->date,
+            'day'=>$request->day,
+            'slot'=>$request->slot
+        ]);
+
     }
 
 }
