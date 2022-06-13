@@ -1632,4 +1632,6 @@
   'New order ID for you' => 'New order ID for you',
   'You will not be able to revert this1' => 'You will not be able to revert this1',
   'MRP Price' => 'MRP Price',
+  'doctor_section' => 'Doctor section',
+  'doctor_setting' => 'Doctor setting',
 );

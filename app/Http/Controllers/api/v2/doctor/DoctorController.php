@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\api\v2\doctor;
 
+use Auth;
 use App\Models\Doctor;
 use Illuminate\Support\Str;
+use App\Models\DoctorSlider;
 use Illuminate\Http\Request;
+use App\Models\DoctorCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Auth;
 
 class DoctorController extends Controller
 {
@@ -64,6 +66,23 @@ class DoctorController extends Controller
     public function get_docotor()
     {
         return Doctor::where('id',Auth::user()->id)->first();
+    }
+
+    public function docotorHome(Request $request)
+    {
+        $doctor_sliders=DoctorSlider::where('status',1)->get();
+        foreach($doctor_sliders as $doctor_slider)
+        {
+            $doctor_slider->image=asset('public/doctor_sliders/'.$doctor_slider->image);
+        }
+
+        $doctor_categories=DoctorCategory::where('delete_status',0)->where('status',1)->get();
+        foreach($doctor_categories as $doctor_category)
+        {
+            $doctor_category->image=asset('public/doctor_categories/'.$doctor_category->image);
+        }
+
+        return response()->json(['doctor_sliders'=>$doctor_sliders,'doctor_categories'=>$doctor_categories]);
     }
 
 }

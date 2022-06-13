@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DoctorSliderController;
 use App\Http\Controllers\api\v1\CustomerController;
 use App\Http\Controllers\api\v2\doctor\DoctorController;
 use App\Http\Controllers\api\v2\doctor\DoctorProfileController;
@@ -90,7 +91,7 @@ Route::group(['namespace' => 'api\v2', 'prefix' => 'v2'], function () {
         Route::post('login', [DoctorController::class, 'login']);
 
         Route::middleware('auth:sanctum')->group( function () {
-
+            Route::post('docotor_home', [DoctorController::class, 'docotorHome']);
             Route::post('get_docotor_profile', [DoctorProfileController::class, 'getDocotorProfile']);
             Route::post('save_docotor_profile', [DoctorProfileController::class, 'saveDocotorProfile']);
             Route::post('get_docotor_slot', [DoctorProfileController::class, 'getDocotorSlot']);

@@ -442,6 +442,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::post('/image-upload', 'FileManagerController@upload')->name('image-upload');
             Route::delete('/delete/{file_path}', 'FileManagerController@destroy')->name('destroy');
         });
+
+        Route::group(['prefix' => 'doctor-settings', 'as' => 'doctor-settings.'], function () {
+            Route::get('/sliders', 'DoctorController@sliders')->name('sliders');
+        });
     });
 
     //for test

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Doctor;
+use App\Models\DoctorSlider;
 use Illuminate\Http\Request;
 
-class DoctorController extends Controller
+class DoctorSliderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Doctor  $doctor
+     * @param  \App\Models\DoctorSlider  $doctorSlider
      * @return \Illuminate\Http\Response
      */
-    public function show(Doctor $doctor)
+    public function show(DoctorSlider $doctorSlider)
     {
         //
     }
@@ -52,10 +52,10 @@ class DoctorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Doctor  $doctor
+     * @param  \App\Models\DoctorSlider  $doctorSlider
      * @return \Illuminate\Http\Response
      */
-    public function edit(Doctor $doctor)
+    public function edit(DoctorSlider $doctorSlider)
     {
         //
     }
@@ -64,10 +64,10 @@ class DoctorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Doctor  $doctor
+     * @param  \App\Models\DoctorSlider  $doctorSlider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Doctor $doctor)
+    public function update(Request $request, DoctorSlider $doctorSlider)
     {
         //
     }
@@ -75,10 +75,10 @@ class DoctorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Doctor  $doctor
+     * @param  \App\Models\DoctorSlider  $doctorSlider
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Doctor $doctor)
+    public function destroy(DoctorSlider $doctorSlider)
     {
         //
     }

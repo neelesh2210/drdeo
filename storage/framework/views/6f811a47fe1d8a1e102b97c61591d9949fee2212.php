@@ -78,7 +78,7 @@
 
                         <!-- End Dashboards -->
                         <!-- POS -->
-            
+
 
                         <!-- End POS -->
                         <?php if(\App\CPU\Helpers::module_permission_check('order_management')): ?>
@@ -421,7 +421,7 @@
                                         class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate"><?php echo e(\App\CPU\translate('flash_deals')); ?></span>
                                 </a>
                             </li>
-                         
+
                             <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/deal/feature')?'active':''); ?>">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
                                    href="<?php echo e(route('admin.deal.feature')); ?>">
@@ -646,9 +646,9 @@
                                     </span>
                                 </a>
                             </li>
-                       
+
                         <?php endif; ?>
-             
+
 
                         <?php if(\App\CPU\Helpers::module_permission_check('report')): ?>
                             <li class="nav-item <?php echo e((Request::is('admin/report/inhoue-product-sale') || Request::is('admin/report/seller-product-sale') || Request::is('admin/report/order') || Request::is('admin/report/earning'))?'scroll-here':''); ?>">
@@ -754,7 +754,19 @@
                             </li>
                         <?php endif; ?>
 
-                    
+                        <li class="nav-item <?php echo e((Request::is('admin/employee*') || Request::is('admin/custom-role*'))?'scroll-here':''); ?>">
+                            <small class="nav-subtitle"><?php echo e(\App\CPU\translate('doctor_section')); ?></small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/custom-role*')?'active':''); ?>">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link"
+                               href="<?php echo e(route('admin.custom-role.create')); ?>">
+                                <i class="tio-incognito nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                        <?php echo e(\App\CPU\translate('doctor_setting')); ?></span>
+                            </a>
+                        </li>
+
                         <li class="nav-item" style="padding-top: 50px">
                             <div class="nav-divider"></div>
                         </li>
