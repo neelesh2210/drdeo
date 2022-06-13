@@ -1634,4 +1634,10 @@
   'MRP Price' => 'MRP Price',
   'doctor_section' => 'Doctor section',
   'doctor_setting' => 'Doctor setting',
+  'Doctor Slider' => 'Doctor Slider',
+  'add_slider' => 'Add slider',
+  'slider_form' => 'Slider form',
+  'slider_url' => 'Slider url',
+  'slider_table' => 'Slider table',
+  'url' => 'Url',
 );

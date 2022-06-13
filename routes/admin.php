@@ -444,7 +444,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
         });
 
         Route::group(['prefix' => 'doctor-settings', 'as' => 'doctor-settings.'], function () {
-            Route::get('/sliders', 'DoctorController@sliders')->name('sliders');
+            Route::get('sliders', 'DoctorsController@sliders')->name('sliders');
+            Route::post('store-slider', 'DoctorsController@storeSlider')->name('store.slider');
+            Route::get('delete-slider/{id}', 'DoctorsController@deleteSlider')->name('delete.slider');
         });
     });
 
