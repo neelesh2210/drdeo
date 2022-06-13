@@ -447,6 +447,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::get('sliders', 'DoctorsController@sliders')->name('sliders');
             Route::post('store-slider', 'DoctorsController@storeSlider')->name('store.slider');
             Route::get('delete-slider/{id}', 'DoctorsController@deleteSlider')->name('delete.slider');
+            Route::get('categories', 'DoctorsController@categories')->name('categories');
+            Route::post('store-categories', 'DoctorsController@storeCategories')->name('store.categories');
+            Route::get('delete-category/{id}', 'DoctorsController@deleteCategory')->name('delete.category');
         });
     });
 

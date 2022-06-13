@@ -6,6 +6,7 @@ use App\Doctor;
 use App\CPU\Helpers;
 use App\Models\DoctorSlider;
 use Illuminate\Http\Request;
+use App\Models\DoctorCategory;
 use App\Http\Controllers\Controller;
 
 class DoctorsController extends Controller
@@ -38,6 +39,37 @@ class DoctorsController extends Controller
     public function deleteSlider($id)
     {
         DoctorSlider::find($id)->delete();
+
+        return back();
+    }
+
+    public function categories()
+    {
+        $list = DoctorCategory::where('delete_status',0)->orderBy('id', 'desc')->paginate(Helpers::pagination_limit());
+
+        return view('admin-views.doctors.category', compact('list'));
+    }
+
+    public function storeCategories(Request $request)
+    {
+        //return $request->all();
+        $doctor_category=new DoctorCategory;
+        $doctor_category->name=$request->name;
+
+        $file= $request->file('image');
+        $filename= date('YmdHi').rand().$file->getClientOriginalName();
+        $file-> move(public_path('/doctor_categories'), $filename);
+
+        $doctor_category->image= $filename;
+        $doctor_category->save();
+
+        return back();
+    }
+
+    public function deleteCategory($id)
+    {
+        //return $id;
+        DoctorCategory::find($id)->update(['delete_status'=>1]);
 
         return back();
     }

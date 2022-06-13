@@ -1640,4 +1640,8 @@
   'slider_url' => 'Slider url',
   'slider_table' => 'Slider table',
   'url' => 'Url',
+  'doctor_sliders' => 'Doctor sliders',
+  'doctor_categories' => 'Doctor categories',
+  'Doctor Category' => 'Doctor Category',
+  'add_categories' => 'Add categories',
 );

@@ -727,7 +727,15 @@
                                href="{{route('admin.doctor-settings.sliders')}}">
                                 <i class="tio-incognito nav-icon"></i>
                                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                        {{\App\CPU\translate('doctor_setting')}}</span>
+                                        {{\App\CPU\translate('doctor_sliders')}}</span>
+                            </a>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/doctor-settings/categories')?'active':''}}">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link"
+                               href="{{route('admin.doctor-settings.categories')}}">
+                                <i class="tio-incognito nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                        {{\App\CPU\translate('doctor_categories')}}</span>
                             </a>
                         </li>
 
