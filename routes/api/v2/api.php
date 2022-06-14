@@ -91,7 +91,7 @@ Route::group(['namespace' => 'api\v2', 'prefix' => 'v2'], function () {
         Route::post('login', [DoctorController::class, 'login']);
 
         Route::middleware('auth:sanctum')->group( function () {
-            Route::post('docotor_home', [DoctorController::class, 'docotorHome']);
+
             Route::post('get_docotor_profile', [DoctorProfileController::class, 'getDocotorProfile']);
             Route::post('save_docotor_profile', [DoctorProfileController::class, 'saveDocotorProfile']);
             Route::post('get_docotor_slot', [DoctorProfileController::class, 'getDocotorSlot']);
@@ -103,6 +103,7 @@ Route::group(['namespace' => 'api\v2', 'prefix' => 'v2'], function () {
 
     Route::group(['prefix' => 'customer', 'middleware' => 'auth:api'], function () {
 
+        Route::post('docotor_home', [CustomerController::class, 'docotorHome']);
         Route::post('get_doctor_list', [CustomerController::class, 'getDoctorList']);
         Route::post('get_doctor_slot', [CustomerController::class, 'getDoctorSlot']);
         Route::post('doctor_slot_booking', [CustomerController::class, 'doctorSlotBooking']);

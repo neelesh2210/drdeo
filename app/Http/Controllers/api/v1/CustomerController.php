@@ -14,8 +14,10 @@ use App\Model\OrderDetail;
 use App\Models\DoctorSlot;
 use App\CPU\CustomerManager;
 use App\Model\SupportTicket;
+use App\Models\DoctorSlider;
 use Illuminate\Http\Request;
 use App\Model\ShippingAddress;
+use App\Models\DoctorCategory;
 use function App\CPU\translate;
 use App\Model\SupportTicketConv;
 use App\Models\DoctorSlotBooking;
@@ -432,6 +434,23 @@ class CustomerController extends Controller
             'slot'=>$request->slot
         ]);
 
+    }
+
+    public function docotorHome(Request $request)
+    {
+        $doctor_sliders=DoctorSlider::where('status',1)->get();
+        foreach($doctor_sliders as $doctor_slider)
+        {
+            $doctor_slider->image=asset('public/doctor_sliders/'.$doctor_slider->image);
+        }
+
+        $doctor_categories=DoctorCategory::where('delete_status',0)->where('status',1)->get();
+        foreach($doctor_categories as $doctor_category)
+        {
+            $doctor_category->image=asset('public/doctor_categories/'.$doctor_category->image);
+        }
+
+        return response()->json(['doctor_sliders'=>$doctor_sliders,'doctor_categories'=>$doctor_categories]);
     }
 
 }
