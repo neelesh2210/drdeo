@@ -96,6 +96,7 @@ Route::group(['namespace' => 'api\v2', 'prefix' => 'v2'], function () {
             Route::post('save_docotor_profile', [DoctorProfileController::class, 'saveDocotorProfile']);
             Route::post('get_docotor_slot', [DoctorProfileController::class, 'getDocotorSlot']);
             Route::post('save_docotor_slot', [DoctorProfileController::class, 'saveDocotorSlot']);
+            Route::post('get_docotor_category', [DoctorProfileController::class, 'getDocotorCategory']);
 
         });
     });

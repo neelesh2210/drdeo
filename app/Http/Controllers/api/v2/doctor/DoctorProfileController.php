@@ -8,6 +8,7 @@ use App\Models\DoctorSlot;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\DoctorProfile;
+use App\Models\DoctorCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
@@ -157,6 +158,17 @@ class DoctorProfileController extends Controller
 
         return $data;
 
+    }
+
+    public function getDocotorCategory(Request $request)
+    {
+        $doctor_categories=DoctorCategory::where('delete_status',0)->where('status',1)->get();
+        foreach($doctor_categories as $doctor_category)
+        {
+            $doctor_category->image=asset('public/doctor_categories/'.$doctor_category->image);
+        }
+
+        return response()->json(['doctor_categories'=>$doctor_categories]);
     }
 
 }
