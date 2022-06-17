@@ -20,23 +20,23 @@ class DoctorProfileController extends Controller
         $data=Doctor::where('id',Auth::user()->id)->with('doctor_profile')->first();
         if(!empty($data->doctor_profile->adhar_card))
         {
-            $data->doctor_profile->adhar_card=asset('doctor_documents/'.$data->doctor_profile->adhar_card);
+            $data->doctor_profile->adhar_card=asset('public/doctor_documents/'.$data->doctor_profile->adhar_card);
         }
         if(!empty($data->doctor_profile->pan_card))
         {
-            $data->doctor_profile->pan_card=asset('doctor_documents/'.$data->doctor_profile->pan_card);
+            $data->doctor_profile->pan_card=asset('public/doctor_documents/'.$data->doctor_profile->pan_card);
         }
         if(!empty($data->doctor_profile->degree))
         {
-            $data->doctor_profile->degree=asset('doctor_documents/'.$data->doctor_profile->degree);
+            $data->doctor_profile->degree=asset('public/doctor_documents/'.$data->doctor_profile->degree);
         }
         if(!empty($data->doctor_profile->registration_document))
         {
-            $data->doctor_profile->registration_document=asset('doctor_documents/'.$data->doctor_profile->registration_document);
+            $data->doctor_profile->registration_document=asset('public/doctor_documents/'.$data->doctor_profile->registration_document);
         }
         if(!empty($data->doctor_profile->profile_photo))
         {
-            $data->doctor_profile->profile_photo=asset('doctor_documents/'.$data->doctor_profile->profile_photo);
+            $data->doctor_profile->profile_photo=asset('public/doctor_documents/'.$data->doctor_profile->profile_photo);
         }
 
         return response()->json(['data' => $data]);
@@ -92,23 +92,23 @@ class DoctorProfileController extends Controller
 
         if(!empty($doctor->doctor_profile->adhar_card))
         {
-            $doctor->doctor_profile->adhar_card=asset('doctor_documents/'.$doctor->doctor_profile->adhar_card);
+            $doctor->doctor_profile->adhar_card=asset('public/doctor_documents/'.$doctor->doctor_profile->adhar_card);
         }
         if(!empty($doctor->doctor_profile->pan_card))
         {
-            $doctor->doctor_profile->pan_card=asset('doctor_documents/'.$doctor->doctor_profile->pan_card);
+            $doctor->doctor_profile->pan_card=asset('public/doctor_documents/'.$doctor->doctor_profile->pan_card);
         }
         if(!empty($doctor->doctor_profile->degree))
         {
-            $doctor->doctor_profile->degree=asset('doctor_documents/'.$doctor->doctor_profile->degree);
+            $doctor->doctor_profile->degree=asset('public/doctor_documents/'.$doctor->doctor_profile->degree);
         }
         if(!empty($doctor->doctor_profile->registration_document))
         {
-            $doctor->doctor_profile->registration_document=asset('doctor_documents/'.$doctor->doctor_profile->registration_document);
+            $doctor->doctor_profile->registration_document=asset('public/doctor_documents/'.$doctor->doctor_profile->registration_document);
         }
         if(!empty($doctor->doctor_profile->profile_photo))
         {
-            $doctor->doctor_profile->profile_photo=asset('doctor_documents/'.$doctor->doctor_profile->profile_photo);
+            $doctor->doctor_profile->profile_photo=asset('public/doctor_documents/'.$doctor->doctor_profile->profile_photo);
         }
 
         return response()->json(['data' => $doctor]);
