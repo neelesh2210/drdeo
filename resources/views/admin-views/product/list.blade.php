@@ -3,7 +3,8 @@
 @section('title', \App\CPU\translate('Product List'))
 
 @push('css_or_js')
-
+<link href="{{asset('public/assets/back-end/css/tags-input.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('public/assets/select2/css/select2.min.css')}}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -22,12 +23,18 @@
                     <div class="row flex-between justify-content-between align-items-center flex-grow-1">
                         <div class="col-12 mb-1 col-md-4">
                             <h5 class="flex-between">
-                                <div>{{\App\CPU\translate('product_table')}} ({{ $pro->total() }})</div>
+                                <div>{{\App\CPU\translate('product_table')}} ({{ $pro->total() }}) {{$diseases}}</div>
                             </h5>
                         </div>
                         <div class="col-12 mb-1 col-md-5" style="width: 40vw">
                             <!-- Search -->
                             <form action="{{ url()->current() }}" method="GET">
+                                <select name="disease" class="form-control" id="disease">
+                                    <option value="">Select Disease</option>
+                                    @foreach (App\Model\Disease::get() as $disease)
+                                        <option value="{{$disease->id}}" @if($diseases == $disease->id) selected @endif>{{$disease->name}}</option>
+                                    @endforeach
+                                </select>
                                 <div class="input-group input-group-merge input-group-flush">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -135,6 +142,8 @@
     <!-- Page level plugins -->
     <script src="{{asset('public/assets/back-end')}}/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="{{asset('public/assets/back-end')}}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="{{asset('public/assets/back-end')}}/js/tags-input.min.js"></script>
+    <script src="{{asset('public/assets/back-end/js/spartan-multi-image-picker.js')}}"></script>
     <!-- Page level custom scripts -->
     <script>
         // Call the dataTables jQuery plugin

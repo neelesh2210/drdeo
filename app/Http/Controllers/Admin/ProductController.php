@@ -110,6 +110,12 @@ class ProductController extends BaseController
         $p->hsn = $request->hsn;
         $p->exp = $request->exp;
         $p->batch = $request->batch;
+        $p->sku = $request->sku;
+        $p->weight = $request->weight;
+        $p->length = $request->length;
+        $p->width = $request->width;
+        $p->height = $request->height;
+        $p->buy_one_get_one = $request->buy_one_get_one;
 
         $category = [];
 
@@ -275,25 +281,26 @@ class ProductController extends BaseController
     {
         $query_param = [];
         $search = $request['search'];
+        $diseases = $request['disease'];
         if ($type == 'in_house') {
             $pro = Product::where(['added_by' => 'admin']);
         } else {
             $pro = Product::where(['added_by' => 'seller'])->where('request_status', $request->status);
         }
 
-        if ($request->has('search')) {
+        if ($request->has('search') || $request->has('disease')) {
             $key = explode(' ', $request['search']);
             $pro = $pro->where(function ($q) use ($key) {
                 foreach ($key as $value) {
                     $q->Where('name', 'like', "%{$value}%");
                 }
-            });
-            $query_param = ['search' => $request['search']];
+            })->whereJsonContains('disease',$diseases);
+            $query_param = ['disease' => $request['disease'],'search' => $request['search']];
         }
 
         $request_status = $request['status'];
         $pro = $pro->orderBy('id', 'DESC')->paginate(Helpers::pagination_limit())->appends(['status' => $request['status']])->appends($query_param);
-        return view('admin-views.product.list', compact('pro', 'search', 'request_status'));
+        return view('admin-views.product.list', compact('pro', 'search','diseases', 'request_status'));
     }
 
     public function stock_limit_list(Request $request, $type)
@@ -485,6 +492,12 @@ class ProductController extends BaseController
         $product->batch = $request->batch;
         $product->exp = $request->exp;
         $product->disease = json_encode($request->disease);
+        $product->sku = $request->sku;
+        $product->weight = $request->weight;
+        $product->length = $request->length;
+        $product->width = $request->width;
+        $product->height = $request->height;
+        $product->buy_one_get_one = $request->buy_one_get_one;
         $category = [];
         if ($request->category_id != null) {
             array_push($category, [

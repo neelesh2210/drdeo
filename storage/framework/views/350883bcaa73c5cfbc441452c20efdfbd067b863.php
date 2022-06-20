@@ -1,9 +1,8 @@
-
-
 <?php $__env->startSection('title', \App\CPU\translate('Product List')); ?>
 
 <?php $__env->startPush('css_or_js'); ?>
-
+<link href="<?php echo e(asset('public/assets/back-end/css/tags-input.min.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/assets/select2/css/select2.min.css')); ?>" rel="stylesheet">
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -22,12 +21,18 @@
                     <div class="row flex-between justify-content-between align-items-center flex-grow-1">
                         <div class="col-12 mb-1 col-md-4">
                             <h5 class="flex-between">
-                                <div><?php echo e(\App\CPU\translate('product_table')); ?> (<?php echo e($pro->total()); ?>)</div>
+                                <div><?php echo e(\App\CPU\translate('product_table')); ?> (<?php echo e($pro->total()); ?>) <?php echo e($diseases); ?></div>
                             </h5>
                         </div>
                         <div class="col-12 mb-1 col-md-5" style="width: 40vw">
                             <!-- Search -->
                             <form action="<?php echo e(url()->current()); ?>" method="GET">
+                                <select name="disease" class="form-control" id="disease">
+                                    <option value="">Select Disease</option>
+                                    <?php $__currentLoopData = App\Model\Disease::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $disease): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($disease->id); ?>" <?php if($diseases == $disease->id): ?> selected <?php endif; ?>><?php echo e($disease->name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
                                 <div class="input-group input-group-merge input-group-flush">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -141,6 +146,8 @@
     <!-- Page level plugins -->
     <script src="<?php echo e(asset('public/assets/back-end')); ?>/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo e(asset('public/assets/back-end')); ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="<?php echo e(asset('public/assets/back-end')); ?>/js/tags-input.min.js"></script>
+    <script src="<?php echo e(asset('public/assets/back-end/js/spartan-multi-image-picker.js')); ?>"></script>
     <!-- Page level custom scripts -->
     <script>
         // Call the dataTables jQuery plugin

@@ -1644,4 +1644,5 @@
   'doctor_categories' => 'Doctor categories',
   'Doctor Category' => 'Doctor Category',
   'add_categories' => 'Add categories',
+  'Selling price' => 'Selling price',
 );

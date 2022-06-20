@@ -142,6 +142,10 @@
                                         <label for="name">HSN No.</label>
                                         <input type="text" name="hsn" class="form-control" id="hsn" value="{{old('hsn')}}" placeholder="HSN No." required>
                                     </div>
+                                    <div class="col-md-6">
+                                        <label for="name">SKU</label>
+                                        <input type="text" name="sku" class="form-control" id="sku" value="{{old('sku')}}" placeholder="SKU" required>
+                                    </div>
 
                                     <div class="col-md-6">
                                         <label for="name">Disease</label>
@@ -149,6 +153,31 @@
                                             <option value="">Select Disease</option>
                                             @foreach (App\Model\Disease::get() as $disease)
                                                 <option value="{{$disease->id}}">{{$disease->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="weight">Weight</label>
+                                        <input type="number" name="weight" class="form-control" id="weight" value="{{old('weight')}}" placeholder="Weight" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="length">Length</label>
+                                        <input type="number" name="length" class="form-control" id="length" value="{{old('length')}}" placeholder="Length" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="width">Width</label>
+                                        <input type="number" name="width" class="form-control" id="width" value="{{old('width')}}" placeholder="Width" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="height">Height</label>
+                                        <input type="number" name="height" class="form-control" id="height" value="{{old('height')}}" placeholder="Height" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="buy_one_get_one">Buy One Get One</label>
+                                        <select name="buy_one_get_one" class="js-example-basic-multiple js-states js-example-responsive form-control" id="buy_one_get_one" required>
+                                            <option value="">Select Product</option>
+                                            @foreach (App\Model\Product::where('status',1)->get() as $product)
+                                                <option value="{{$product->id}}">{{$product->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -211,9 +240,9 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label class="control-label">{{\App\CPU\translate('Unit price')}}</label>
+                                        <label class="control-label">{{\App\CPU\translate('Selling price')}}</label>
                                         <input type="number" min="0" step="0.01"
-                                               placeholder="{{\App\CPU\translate('Unit price')}}"
+                                               placeholder="{{\App\CPU\translate('Selling price')}}"
                                                name="unit_price" value="{{old('unit_price')}}" class="form-control"
                                                required>
                                     </div>
