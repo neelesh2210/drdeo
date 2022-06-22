@@ -171,4 +171,95 @@ class DoctorProfileController extends Controller
         return response()->json(['doctor_categories'=>$doctor_categories]);
     }
 
+    public function docotorDashboard(Request $request)
+    {
+        $data=Doctor::where('id',$request->doctor_id)->with('doctor_profile')->first();
+
+        $profile_percent=0;
+
+        if(!empty($data->name))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->email))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->phone_number))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->specialization))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->designation))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->experience))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->gender))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->degree_name))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->profile_photo))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->adhar_card))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->pan_card))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->degree))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->institute_name))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->year_of_completion))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->city))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->address))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->registration_id))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->registration_council_name))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->year_of_registration))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+        if(!empty($data->doctor_profile->registration_document))
+        {
+            $profile_percent=$profile_percent+5;
+        }
+
+        return response()->json(['profile_percent'=>$profile_percent,'verification_status'=>$data->status]);
+
+    }
+
 }

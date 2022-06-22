@@ -33,7 +33,7 @@ class DoctorController extends Controller
 
         $token = $doctor->createToken('auth_token')->plainTextToken;
 
-        return response()->json(['access_token' => $token,'token_type' => 'Bearer',]);
+        return response()->json(['access_token' => $token,'token_type' => 'Bearer']);
     }
 
     public function login(Request $request)
@@ -63,9 +63,9 @@ class DoctorController extends Controller
         }
     }
 
-    public function get_docotor()
-    {
-        return Doctor::where('id',Auth::user()->id)->first();
-    }
+    // public function get_docotor()
+    // {
+    //     return Doctor::where('id',Auth::user()->id)->first();
+    // }
 
 }
