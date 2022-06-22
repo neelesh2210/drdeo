@@ -67,7 +67,7 @@
                             <tr>
                                 <th>{{\App\CPU\translate('SL#')}}</th>
                                 <th>{{\App\CPU\translate('Product Name')}}</th>
-                                <th>{{\App\CPU\translate('purchase_price')}}</th>
+                                <th>{{\App\CPU\translate('mrp_price')}}</th>
                                 <th>{{\App\CPU\translate('selling_price')}}</th>
                                 <th>{{\App\CPU\translate('featured')}}</th>
                                 <th>{{\App\CPU\translate('Active')}} {{\App\CPU\translate('status')}}</th>

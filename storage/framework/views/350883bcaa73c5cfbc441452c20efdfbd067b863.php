@@ -65,7 +65,7 @@
                             <tr>
                                 <th><?php echo e(\App\CPU\translate('SL#')); ?></th>
                                 <th><?php echo e(\App\CPU\translate('Product Name')); ?></th>
-                                <th><?php echo e(\App\CPU\translate('purchase_price')); ?></th>
+                                <th><?php echo e(\App\CPU\translate('mrp_price')); ?></th>
                                 <th><?php echo e(\App\CPU\translate('selling_price')); ?></th>
                                 <th><?php echo e(\App\CPU\translate('featured')); ?></th>
                                 <th><?php echo e(\App\CPU\translate('Active')); ?> <?php echo e(\App\CPU\translate('status')); ?></th>

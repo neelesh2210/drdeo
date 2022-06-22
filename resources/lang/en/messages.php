@@ -1645,4 +1645,6 @@
   'Doctor Category' => 'Doctor Category',
   'add_categories' => 'Add categories',
   'Selling price' => 'Selling price',
+  'Unit1' => 'Unit1',
+  'mrp_price' => 'Mrp price',
 );

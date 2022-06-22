@@ -144,17 +144,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <label for="name"><?php echo e(\App\CPU\translate('Unit')); ?></label>
-                                        <select
-                                            class="js-example-basic-multiple js-states js-example-responsive form-control"
-                                            name="unit">
-                                            <?php $__currentLoopData = \App\CPU\Helpers::units(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option
-                                                    value=<?php echo e($x); ?> <?php echo e($product->unit==$x ? 'selected' : ''); ?>><?php echo e($x); ?></option>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        </select>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="form-group">
@@ -325,45 +315,6 @@
                         </div>
                     </div>
 
-                    <div class="card mt-2 mb-2 rest-part">
-                        <div class="card-header">
-                            <h4><?php echo e(\App\CPU\translate('seo_section')); ?></h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 mb-4">
-                                    <label class="control-label"><?php echo e(\App\CPU\translate('Meta Title')); ?></label>
-                                    <input type="text" name="meta_title" value="<?php echo e($product['meta_title']); ?>" placeholder="" class="form-control">
-                                </div>
-
-                                <div class="col-md-8 mb-4">
-                                    <label class="control-label"><?php echo e(\App\CPU\translate('Meta Description')); ?></label>
-                                    <textarea rows="10" type="text" name="meta_description" class="form-control"><?php echo e($product['meta_description']); ?></textarea>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="form-group mb-0">
-                                        <label><?php echo e(\App\CPU\translate('Meta Image')); ?></label>
-                                    </div>
-                                    <div class="border-dashed">
-                                        <div class="row" id="meta_img">
-                                            <div class="col-6">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <img style="width: 100%" height="auto"
-                                                             onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
-                                                             src="<?php echo e(asset("storage/app/public/product/meta")); ?>/<?php echo e($product['meta_image']); ?>"
-                                                             alt="Meta image">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="card mt-2 rest-part">
                         <div class="card-body">
                             <div class="row">
@@ -416,6 +367,47 @@
                                                          onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                                                          src="<?php echo e(asset("storage/app/public/product/thumbnail")); ?>/<?php echo e($product['thumbnail']); ?>"
                                                          alt="Product image">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="card mt-2 mb-2 rest-part">
+                        <div class="card-header">
+                            <h4><?php echo e(\App\CPU\translate('seo_section')); ?></h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 mb-4">
+                                    <label class="control-label"><?php echo e(\App\CPU\translate('Meta Title')); ?></label>
+                                    <input type="text" name="meta_title" value="<?php echo e($product['meta_title']); ?>" placeholder="" class="form-control">
+                                </div>
+
+                                <div class="col-md-8 mb-4">
+                                    <label class="control-label"><?php echo e(\App\CPU\translate('Meta Description')); ?></label>
+                                    <textarea rows="10" type="text" name="meta_description" class="form-control"><?php echo e($product['meta_description']); ?></textarea>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group mb-0">
+                                        <label><?php echo e(\App\CPU\translate('Meta Image')); ?></label>
+                                    </div>
+                                    <div class="border-dashed">
+                                        <div class="row" id="meta_img">
+                                            <div class="col-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img style="width: 100%" height="auto"
+                                                             onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
+                                                             src="<?php echo e(asset("storage/app/public/product/meta")); ?>/<?php echo e($product['meta_image']); ?>"
+                                                             alt="Meta image">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

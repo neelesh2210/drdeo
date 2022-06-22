@@ -244,7 +244,7 @@ class Helpers
 
     public static function units()
     {
-        $x = ['pc'];
+        $x = ['PC','BOTTOL','ML'];
         return $x;
     }
 
@@ -674,7 +674,7 @@ class Helpers
             'margin_right' => 5,
             'margin_top' => 10,
            'margin_bottom' => 5,
-           
+
             ]);
         $mpdf->autoScriptToLang = true;
         $mpdf->autoLangToFont = true;

@@ -123,8 +123,8 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <label for="name">{{\App\CPU\translate('Unit')}}</label>
+                                    {{-- <div class="col-md-6">
+                                        <label for="name">{{\App\CPU\translate('Unit1')}}</label>
                                         <select
                                             class="js-example-basic-multiple form-control"
                                             name="unit">
@@ -133,7 +133,7 @@
                                                     value="{{$x}}" {{old('unit')==$x? 'selected':''}}>{{$x}}</option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -301,34 +301,6 @@
                         </div>
                     </div>
 
-                    <div class="card mt-2 mb-2 rest-part">
-                        <div class="card-header">
-                            <h4>{{\App\CPU\translate('seo_section')}}</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 mb-4">
-                                    <label class="control-label">{{\App\CPU\translate('Meta Title')}}</label>
-                                    <input type="text" name="meta_title" placeholder="" class="form-control">
-                                </div>
-
-                                <div class="col-md-8 mb-4">
-                                    <label class="control-label">{{\App\CPU\translate('Meta Description')}}</label>
-                                    <textarea rows="10" type="text" name="meta_description" class="form-control"></textarea>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="form-group mb-0">
-                                        <label>{{\App\CPU\translate('Meta Image')}}</label>
-                                    </div>
-                                    <div class="border border-dashed">
-                                        <div class="row" id="meta_img"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="card mt-2 rest-part">
                         <div class="card-body">
                             <div class="row">
@@ -356,6 +328,36 @@
                                     </div>
                                     <div style="max-width:200px;">
                                         <div class="row" id="thumbnail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="card mt-2 mb-2 rest-part">
+                        <div class="card-header">
+                            <h4>{{\App\CPU\translate('seo_section')}}</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 mb-4">
+                                    <label class="control-label">{{\App\CPU\translate('Meta Title')}}</label>
+                                    <input type="text" name="meta_title" placeholder="" class="form-control">
+                                </div>
+
+                                <div class="col-md-8 mb-4">
+                                    <label class="control-label">{{\App\CPU\translate('Meta Description')}}</label>
+                                    <textarea rows="10" type="text" name="meta_description" class="form-control"></textarea>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group mb-0">
+                                        <label>{{\App\CPU\translate('Meta Image')}}</label>
+                                    </div>
+                                    <div class="border border-dashed">
+                                        <div class="row" id="meta_img"></div>
                                     </div>
                                 </div>
                             </div>

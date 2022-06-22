@@ -144,7 +144,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    {{-- <div class="col-md-6">
                                         <label for="name">{{\App\CPU\translate('Unit')}}</label>
                                         <select
                                             class="js-example-basic-multiple js-states js-example-responsive form-control"
@@ -154,7 +154,7 @@
                                                     value={{$x}} {{ $product->unit==$x ? 'selected' : ''}}>{{$x}}</option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -334,45 +334,6 @@
                         </div>
                     </div>
 
-                    <div class="card mt-2 mb-2 rest-part">
-                        <div class="card-header">
-                            <h4>{{\App\CPU\translate('seo_section')}}</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 mb-4">
-                                    <label class="control-label">{{\App\CPU\translate('Meta Title')}}</label>
-                                    <input type="text" name="meta_title" value="{{$product['meta_title']}}" placeholder="" class="form-control">
-                                </div>
-
-                                <div class="col-md-8 mb-4">
-                                    <label class="control-label">{{\App\CPU\translate('Meta Description')}}</label>
-                                    <textarea rows="10" type="text" name="meta_description" class="form-control">{{$product['meta_description']}}</textarea>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="form-group mb-0">
-                                        <label>{{\App\CPU\translate('Meta Image')}}</label>
-                                    </div>
-                                    <div class="border-dashed">
-                                        <div class="row" id="meta_img">
-                                            <div class="col-6">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <img style="width: 100%" height="auto"
-                                                             onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                                             src="{{asset("storage/app/public/product/meta")}}/{{$product['meta_image']}}"
-                                                             alt="Meta image">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="card mt-2 rest-part">
                         <div class="card-body">
                             <div class="row">
@@ -425,6 +386,47 @@
                                                          onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                                          src="{{asset("storage/app/public/product/thumbnail")}}/{{$product['thumbnail']}}"
                                                          alt="Product image">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="card mt-2 mb-2 rest-part">
+                        <div class="card-header">
+                            <h4>{{\App\CPU\translate('seo_section')}}</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 mb-4">
+                                    <label class="control-label">{{\App\CPU\translate('Meta Title')}}</label>
+                                    <input type="text" name="meta_title" value="{{$product['meta_title']}}" placeholder="" class="form-control">
+                                </div>
+
+                                <div class="col-md-8 mb-4">
+                                    <label class="control-label">{{\App\CPU\translate('Meta Description')}}</label>
+                                    <textarea rows="10" type="text" name="meta_description" class="form-control">{{$product['meta_description']}}</textarea>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group mb-0">
+                                        <label>{{\App\CPU\translate('Meta Image')}}</label>
+                                    </div>
+                                    <div class="border-dashed">
+                                        <div class="row" id="meta_img">
+                                            <div class="col-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img style="width: 100%" height="auto"
+                                                             onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                                                             src="{{asset("storage/app/public/product/meta")}}/{{$product['meta_image']}}"
+                                                             alt="Meta image">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
