@@ -52,16 +52,16 @@
                                                 <b>Address: </b><?php echo e($data->doctor_profile->address); ?> <br>
                                             </td>
                                             <td>
-                                                <img src="<?php echo e(asset('public/doctor_documents/'.$data->doctor_profile->adhar_card)); ?>" style="width: 100px;height: 100px;">
+                                                <img src="<?php if(!empty($data->doctor_profile->adhar_card)): ?><?php echo e(asset('public/doctor_documents/'.$data->doctor_profile->adhar_card)); ?> <?php else: ?> https://tallyfy.com/wp-content/uploads/no-documents.png <?php endif; ?>" style="width: 100px;height: 100px;">
                                             </td>
                                             <td>
-                                                <img src="<?php echo e(asset('public/doctor_documents/'.$data->doctor_profile->pan_card)); ?>" style="width: 100px;height: 100px;">
+                                                <img src="<?php if(!empty($data->doctor_profile->pan_card)): ?><?php echo e(asset('public/doctor_documents/'.$data->doctor_profile->pan_card)); ?> <?php else: ?> https://tallyfy.com/wp-content/uploads/no-documents.png <?php endif; ?>" style="width: 100px;height: 100px;">
                                             </td>
                                             <td>
-                                                <img src="<?php echo e(asset('public/doctor_documents/'.$data->doctor_profile->degree)); ?>" style="width: 100px;height: 100px;">
+                                                <img src="<?php if(!empty($data->doctor_profile->degree)): ?><?php echo e(asset('public/doctor_documents/'.$data->doctor_profile->degree)); ?> <?php else: ?> https://tallyfy.com/wp-content/uploads/no-documents.png <?php endif; ?>" style="width: 100px;height: 100px;">
                                             </td>
                                             <td>
-                                                <img src="<?php echo e(asset('public/doctor_documents/'.$data->doctor_profile->registration_document)); ?>" style="width: 100px;height: 100px;">
+                                                <img src="<?php if(!empty($data->doctor_profile->registration_document)): ?><?php echo e(asset('public/doctor_documents/'.$data->doctor_profile->registration_document)); ?> <?php else: ?> https://tallyfy.com/wp-content/uploads/no-documents.png <?php endif; ?>" style="width: 100px;height: 100px;">
                                             </td>
                                             <td>
                                                 <label class="switch switch-status">

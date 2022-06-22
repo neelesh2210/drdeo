@@ -53,16 +53,16 @@
                                                 <b>Address: </b>{{$data->doctor_profile->address}} <br>
                                             </td>
                                             <td>
-                                                <img src="{{asset('public/doctor_documents/'.$data->doctor_profile->adhar_card)}}" style="width: 100px;height: 100px;">
+                                                <img src="@if(!empty($data->doctor_profile->adhar_card)){{asset('public/doctor_documents/'.$data->doctor_profile->adhar_card)}} @else https://tallyfy.com/wp-content/uploads/no-documents.png @endif" style="width: 100px;height: 100px;">
                                             </td>
                                             <td>
-                                                <img src="{{asset('public/doctor_documents/'.$data->doctor_profile->pan_card)}}" style="width: 100px;height: 100px;">
+                                                <img src="@if(!empty($data->doctor_profile->pan_card)){{asset('public/doctor_documents/'.$data->doctor_profile->pan_card)}} @else https://tallyfy.com/wp-content/uploads/no-documents.png @endif" style="width: 100px;height: 100px;">
                                             </td>
                                             <td>
-                                                <img src="{{asset('public/doctor_documents/'.$data->doctor_profile->degree)}}" style="width: 100px;height: 100px;">
+                                                <img src="@if(!empty($data->doctor_profile->degree)){{asset('public/doctor_documents/'.$data->doctor_profile->degree)}} @else https://tallyfy.com/wp-content/uploads/no-documents.png @endif" style="width: 100px;height: 100px;">
                                             </td>
                                             <td>
-                                                <img src="{{asset('public/doctor_documents/'.$data->doctor_profile->registration_document)}}" style="width: 100px;height: 100px;">
+                                                <img src="@if(!empty($data->doctor_profile->registration_document)){{asset('public/doctor_documents/'.$data->doctor_profile->registration_document)}} @else https://tallyfy.com/wp-content/uploads/no-documents.png @endif" style="width: 100px;height: 100px;">
                                             </td>
                                             <td>
                                                 <label class="switch switch-status">
