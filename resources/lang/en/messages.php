@@ -1647,4 +1647,11 @@
   'Selling price' => 'Selling price',
   'Unit1' => 'Unit1',
   'mrp_price' => 'Mrp price',
+  'doctors' => 'Doctors',
+  'Doctor List' => 'Doctor List',
+  'doctor_table' => 'Doctor table',
+  'doctor_Table' => 'Doctor Table',
+  'Doctor Varification Status Changed successfully' => 'Doctor Varification Status Changed successfully',
+  'Doctor Verified' => 'Doctor Verified',
+  'Doctor Not Verified' => 'Doctor Not Verified',
 );

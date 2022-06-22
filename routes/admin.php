@@ -450,6 +450,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::get('categories', 'DoctorsController@categories')->name('categories');
             Route::post('store-categories', 'DoctorsController@storeCategories')->name('store.categories');
             Route::get('delete-category/{id}', 'DoctorsController@deleteCategory')->name('delete.category');
+            Route::get('doctor-list', 'DoctorsController@doctorList')->name('doctor.list');
+            Route::post('verify-doctor', 'DoctorsController@verifyDoctor')->name('verify.doctor');
         });
     });
 

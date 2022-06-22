@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Doctor;
+use App\Models\Doctor;
 use App\CPU\Helpers;
 use App\Models\DoctorSlider;
 use Illuminate\Http\Request;
@@ -72,6 +72,20 @@ class DoctorsController extends Controller
         DoctorCategory::find($id)->update(['delete_status'=>1]);
 
         return back();
+    }
+
+    public function doctorList()
+    {
+        $list=Doctor::orderBy('id','desc')->paginate(10);
+
+        return view('admin-views.doctors.doctor_list',compact('list'));
+    }
+
+    public function verifyDoctor(Request $request)
+    {
+        Doctor::where('id',$request->id)->update([
+            'status'=>$request->status
+        ]);
     }
 
 }
