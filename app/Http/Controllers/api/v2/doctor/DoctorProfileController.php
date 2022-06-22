@@ -173,7 +173,7 @@ class DoctorProfileController extends Controller
 
     public function docotorDashboard(Request $request)
     {
-        $data=Doctor::where('id',$request->doctor_id)->with('doctor_profile')->first();
+        $data=Doctor::where('id',Auth::user()->id)->with('doctor_profile')->first();
 
         $profile_percent=0;
 
