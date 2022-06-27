@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\DoctorProfile;
 use App\Models\DoctorCategory;
+use App\Models\DoctorSlotBooking;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
@@ -260,6 +261,16 @@ class DoctorProfileController extends Controller
 
         return response()->json(['profile_percent'=>$profile_percent,'verification_status'=>$data->status]);
 
+    }
+
+    public function bookingHistories(Request $request)
+    {
+        return $list=DoctorSlotBooking::where('doctor_id',Auth::user()->id)->where('date','<=',date('d-m-Y'))->with('customer')->paginate(20);
+    }
+
+    public function upcomingBooking(Request $request)
+    {
+        return $list=DoctorSlotBooking::where('doctor_id',Auth::user()->id)->where('date','>=',date('d-m-Y'))->with('customer')->paginate(20);
     }
 
 }

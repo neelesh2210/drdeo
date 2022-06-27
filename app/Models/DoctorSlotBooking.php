@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DoctorSlotBooking extends Model
 {
@@ -18,4 +19,9 @@ class DoctorSlotBooking extends Model
         'status',
         'delete_stauts'
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo(User::class,'customer_id');
+    }
 }

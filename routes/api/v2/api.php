@@ -98,6 +98,8 @@ Route::group(['namespace' => 'api\v2', 'prefix' => 'v2'], function () {
             Route::post('save_docotor_slot', [DoctorProfileController::class, 'saveDocotorSlot']);
             Route::post('get_docotor_category', [DoctorProfileController::class, 'getDocotorCategory']);
             Route::post('docotor_dashboard', [DoctorProfileController::class, 'docotorDashboard']);
+            Route::post('booking_histories', [DoctorProfileController::class, 'bookingHistories']);
+            Route::post('upcoming_booking', [DoctorProfileController::class, 'upcomingBooking']);
 
         });
     });
