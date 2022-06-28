@@ -1020,7 +1020,6 @@
                 url: '{{ route('cart.variant_price') }}',
                 data: $('#add-to-cart-form').serializeArray(),
                 success: function (data) {
-                    console.log(data)
                     $('#add-to-cart-form #chosen_price_div').removeClass('d-none');
                     $('#add-to-cart-form #chosen_price_div #chosen_price').html(data.price);
                     $('#set-tax-amount').html(data.tax);

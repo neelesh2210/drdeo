@@ -187,7 +187,7 @@
                                             <select name="disease[]" class="js-example-basic-multiple js-states js-example-responsive form-control" id="disease" required multiple>
                                                 <option value="">Select Disease</option>
                                                 @foreach (App\Model\Disease::get() as $disease)
-                                                    <option value="{{$disease->id}}" @if(in_array($disease->id,json_decode($product->disease))) selected @endif>{{$disease->name}}</option>
+                                                    <option value="{{$disease->id}}" @if(!empty($product->disease))@if(in_array($disease->id,json_decode($product->disease))) selected @endif @endif>{{$disease->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>

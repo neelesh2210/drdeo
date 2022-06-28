@@ -27,7 +27,7 @@
         @if($cart->count() > 0)
             @foreach($cart as $key => $cartItem)
                 @php($sub_total+=$cartItem['price']*$cartItem['quantity'])
-                @php($total_tax+=$cartItem['tax']*$cartItem['quantity'])
+                @php($total_tax+=0)
                 @php($total_discount_on_product+=$cartItem['discount']*$cartItem['quantity'])
             @endforeach
             @php($total_shipping_cost=$shipping_cost)
@@ -40,12 +40,12 @@
                 {{\App\CPU\Helpers::currency_converter($sub_total)}}
             </span>
         </div>
-        <div class="d-flex justify-content-between">
+        <!-- <div class="d-flex justify-content-between">
             <span class="cart_title">{{\App\CPU\translate('tax')}}</span>
             <span class="cart_value">
                 {{\App\CPU\Helpers::currency_converter($total_tax)}}
             </span>
-        </div>
+        </div> -->
         <div class="d-flex justify-content-between">
             <span class="cart_title">{{\App\CPU\translate('shipping')}}</span>
             <span class="cart_value">
@@ -94,5 +94,5 @@
             </span>
         </div>
     </div>
-   
+
 </aside>

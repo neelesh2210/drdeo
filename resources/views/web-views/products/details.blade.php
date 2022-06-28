@@ -80,7 +80,7 @@
             background-color: #ffffff;
             text-transform: uppercase;
         }
-        
+
 
         @media (max-width: 768px) {
             .feature_header span {
@@ -161,7 +161,7 @@
                 margin- {{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 7%;
             }
         }
-        
+
     </style>
     <style>
         th, td {
@@ -245,14 +245,14 @@
                                 @endif
                             @endfor
                         </div>
-                        <span
+                        <!-- <span
                             class="font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}">{{$overallRating[1]}} {{\App\CPU\translate('Reviews')}}</span>
                         <span style="width: 0px;height: 10px;border: 0.5px solid #707070; margin-top: 6px"></span>
                         <span
                             class="font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}">{{$countOrder}} {{\App\CPU\translate('orders')}}   </span>
                         <span style="width: 0px;height: 10px;border: 0.5px solid #707070; margin-top: 6px">    </span>
                         <span
-                            class=" font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}">  {{$countWishlist}} {{\App\CPU\translate('wish')}} </span>
+                            class=" font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}">  {{$countWishlist}} {{\App\CPU\translate('wish')}} </span> -->
 
                     </div>
                     <div class="mb-3">
@@ -267,17 +267,17 @@
                         @endif
                     </div>
 
-                    @if($product->discount > 0)
+                    <!-- @if($product->discount > 0)
                         <div class="mb-3">
                             <strong>{{\App\CPU\translate('discount')}} : </strong>
                             <strong id="set-discount-amount"></strong>
                         </div>
-                    @endif
+                    @endif -->
 
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <strong>{{\App\CPU\translate('tax')}} : </strong>
                         <strong id="set-tax-amount"></strong>
-                    </div>
+                    </div> -->
                     <form id="add-to-cart-form" class="mb-2">
                         @csrf
                         <input type="hidden" name="id" value="{{ $product->id }}">
@@ -423,9 +423,9 @@
               @php($side_banner=\App\Model\Banner::where('banner_type','Product Banner')->where('published',1)->orderBy('id','asc')->take(3)->get())
         @foreach($side_banner as $key=>$banner)
              <a class="offerImg" href="{{$banner['url']}}">
-            <img onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" src="{{asset('storage/app/public/banner')}}/{{$banner['photo']}}"></a>          
-             @endforeach                           
-                                
+            <img onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" src="{{asset('storage/app/public/banner')}}/{{$banner['photo']}}"></a>
+             @endforeach
+
             </div>
         </div>
     </div>
@@ -842,7 +842,7 @@
             </div>
         </div>
         <!-- Grid-->
-   
+
         <!-- Product-->
         <div class="row mt-4">
             @if (count($relatedProducts)>0)

@@ -73,7 +73,6 @@ class ProductController extends BaseController
         $validator = Validator::make($request->all(), [
             'category_id' => 'required',
             'brand_id' => 'required',
-            'unit' => 'required',
             'images' => 'required',
             'tax' => 'required|min:0',
             'unit_price' => 'required|numeric|min:1',
@@ -462,7 +461,6 @@ class ProductController extends BaseController
             'name' => 'required',
             'category_id' => 'required',
             'brand_id' => 'required',
-            'unit' => 'required',
             'tax' => 'required|min:0',
             'unit_price' => 'required|numeric|min:1',
             'purchase_price' => 'required|numeric|min:1',

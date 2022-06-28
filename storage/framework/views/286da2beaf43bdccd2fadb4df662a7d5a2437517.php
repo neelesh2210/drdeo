@@ -27,7 +27,7 @@
         <?php if($cart->count() > 0): ?>
             <?php $__currentLoopData = $cart; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $cartItem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php ($sub_total+=$cartItem['price']*$cartItem['quantity']); ?>
-                <?php ($total_tax+=$cartItem['tax']*$cartItem['quantity']); ?>
+                <?php ($total_tax+=0); ?>
                 <?php ($total_discount_on_product+=$cartItem['discount']*$cartItem['quantity']); ?>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             <?php ($total_shipping_cost=$shipping_cost); ?>
@@ -41,13 +41,13 @@
 
             </span>
         </div>
-        <div class="d-flex justify-content-between">
+        <!-- <div class="d-flex justify-content-between">
             <span class="cart_title"><?php echo e(\App\CPU\translate('tax')); ?></span>
             <span class="cart_value">
                 <?php echo e(\App\CPU\Helpers::currency_converter($total_tax)); ?>
 
             </span>
-        </div>
+        </div> -->
         <div class="d-flex justify-content-between">
             <span class="cart_title"><?php echo e(\App\CPU\translate('shipping')); ?></span>
             <span class="cart_value">
@@ -102,6 +102,6 @@
             </span>
         </div>
     </div>
-   
+
 </aside>
 <?php /**PATH C:\xampp\htdocs\drdeo\resources\views/web-views/partials/_order-summary.blade.php ENDPATH**/ ?>

@@ -78,7 +78,7 @@
             background-color: #ffffff;
             text-transform: uppercase;
         }
-        
+
 
         @media (max-width: 768px) {
             .feature_header span {
@@ -159,7 +159,7 @@
                 margin- <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 7%;
             }
         }
-        
+
     </style>
     <style>
         th, td {
@@ -243,14 +243,14 @@
                                 <?php endif; ?>
                             <?php endfor; ?>
                         </div>
-                        <span
+                        <!-- <span
                             class="font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 <?php echo e(Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'); ?>"><?php echo e($overallRating[1]); ?> <?php echo e(\App\CPU\translate('Reviews')); ?></span>
                         <span style="width: 0px;height: 10px;border: 0.5px solid #707070; margin-top: 6px"></span>
                         <span
                             class="font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 <?php echo e(Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'); ?>"><?php echo e($countOrder); ?> <?php echo e(\App\CPU\translate('orders')); ?>   </span>
                         <span style="width: 0px;height: 10px;border: 0.5px solid #707070; margin-top: 6px">    </span>
                         <span
-                            class=" font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 <?php echo e(Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'); ?>">  <?php echo e($countWishlist); ?> <?php echo e(\App\CPU\translate('wish')); ?> </span>
+                            class=" font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 <?php echo e(Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'); ?>">  <?php echo e($countWishlist); ?> <?php echo e(\App\CPU\translate('wish')); ?> </span> -->
 
                     </div>
                     <div class="mb-3">
@@ -267,17 +267,17 @@
                         <?php endif; ?>
                     </div>
 
-                    <?php if($product->discount > 0): ?>
+                    <!-- <?php if($product->discount > 0): ?>
                         <div class="mb-3">
                             <strong><?php echo e(\App\CPU\translate('discount')); ?> : </strong>
                             <strong id="set-discount-amount"></strong>
                         </div>
-                    <?php endif; ?>
+                    <?php endif; ?> -->
 
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <strong><?php echo e(\App\CPU\translate('tax')); ?> : </strong>
                         <strong id="set-tax-amount"></strong>
-                    </div>
+                    </div> -->
                     <form id="add-to-cart-form" class="mb-2">
                         <?php echo csrf_field(); ?>
                         <input type="hidden" name="id" value="<?php echo e($product->id); ?>">
@@ -424,9 +424,9 @@
               <?php ($side_banner=\App\Model\Banner::where('banner_type','Product Banner')->where('published',1)->orderBy('id','asc')->take(3)->get()); ?>
         <?php $__currentLoopData = $side_banner; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$banner): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
              <a class="offerImg" href="<?php echo e($banner['url']); ?>">
-            <img onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'" src="<?php echo e(asset('storage/app/public/banner')); ?>/<?php echo e($banner['photo']); ?>"></a>          
-             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                           
-                                
+            <img onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'" src="<?php echo e(asset('storage/app/public/banner')); ?>/<?php echo e($banner['photo']); ?>"></a>
+             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
             </div>
         </div>
     </div>
@@ -860,7 +860,7 @@
             </div>
         </div>
         <!-- Grid-->
-   
+
         <!-- Product-->
         <div class="row mt-4">
             <?php if(count($relatedProducts)>0): ?>
