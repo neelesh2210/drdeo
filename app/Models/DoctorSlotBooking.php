@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\User;
+use App\Models\Doctor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -23,5 +24,15 @@ class DoctorSlotBooking extends Model
     public function customer()
     {
         return $this->belongsTo(User::class,'customer_id');
+    }
+
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class,'doctor_id');
+    }
+
+    public function doctor_profile()
+    {
+        return $this->hasOne(DoctorProfile::class,'doctor_id');
     }
 }

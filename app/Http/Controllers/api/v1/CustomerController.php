@@ -469,4 +469,9 @@ class CustomerController extends Controller
         return response()->json(['doctor_sliders'=>$doctor_sliders,'doctor_categories'=>$doctor_categories]);
     }
 
+    public function customerBookingHistories(Request $request)
+    {
+        return $list=DoctorSlotBooking::where('customer_id',Auth::user()->id)->with('doctor')->with('doctor_profile')->paginate(20);
+    }
+
 }

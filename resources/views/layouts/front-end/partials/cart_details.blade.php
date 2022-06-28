@@ -113,7 +113,7 @@
                 <div class="mt-3"></div>
             @endforeach
 
-            @if($shippingMethod=='inhouse_shipping')
+            {{-- @if($shippingMethod=='inhouse_shipping')
                 @php($shippings=\App\CPU\Helpers::get_shipping_methods(1,'admin'))
                 <div class="row">
                     <div class="col-12">
@@ -128,7 +128,7 @@
                         </select>
                     </div>
                 </div>
-            @endif
+            @endif --}}
 
             @if( $cart->count() == 0)
                 <div class="d-flex justify-content-center align-items-center">
@@ -136,7 +136,7 @@
                 </div>
             @endif
         </div>
-        
+
         <form  method="get">
             <div class="form-group">
                 <div class="row">
@@ -148,7 +148,7 @@
                 </div>
             </div>
         </form>
-       
+
 
         <div class="row pt-2">
             <div class="col-6">
@@ -156,7 +156,7 @@
                     <i class="fa fa-{{Session::get('direction') === "rtl" ? 'forward' : 'backward'}} px-1"></i> {{\App\CPU\translate('continue_shopping')}}
                 </a>
             </div>
-            
+
             <div class="col-6">
                 <a onclick="checkout()"
                    class="btn btn-primary pull-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}">
@@ -203,7 +203,7 @@
             data: {
                     _token: '{{csrf_token()}}',
                     order_note:order_note,
-                    
+
                 },
             beforeSend: function () {
                 $('#loading').show();
@@ -218,5 +218,5 @@
             },
         });
     }
-    
+
 </script>

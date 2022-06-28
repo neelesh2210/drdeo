@@ -120,23 +120,7 @@
                 <div class="mt-3"></div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-            <?php if($shippingMethod=='inhouse_shipping'): ?>
-                <?php ($shippings=\App\CPU\Helpers::get_shipping_methods(1,'admin')); ?>
-                <div class="row">
-                    <div class="col-12">
-                        <select class="form-control" onchange="set_shipping_id(this.value,'all_cart_group')">
-                            <option><?php echo e(\App\CPU\translate('choose_shipping_method')); ?></option>
-                            <?php $__currentLoopData = $shippings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $shipping): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <option
-                                    value="<?php echo e($shipping['id']); ?>" <?php echo e($choosen_shipping['shipping_method_id']==$shipping['id']?'selected':''); ?>>
-                                    <?php echo e($shipping['title'].' ( '.$shipping['duration'].' ) '.\App\CPU\Helpers::currency_converter($shipping['cost'])); ?>
-
-                                </option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </select>
-                    </div>
-                </div>
-            <?php endif; ?>
+            
 
             <?php if( $cart->count() == 0): ?>
                 <div class="d-flex justify-content-center align-items-center">
@@ -144,7 +128,7 @@
                 </div>
             <?php endif; ?>
         </div>
-        
+
         <form  method="get">
             <div class="form-group">
                 <div class="row">
@@ -156,7 +140,7 @@
                 </div>
             </div>
         </form>
-       
+
 
         <div class="row pt-2">
             <div class="col-6">
@@ -165,7 +149,7 @@
 
                 </a>
             </div>
-            
+
             <div class="col-6">
                 <a onclick="checkout()"
                    class="btn btn-primary pull-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>">
@@ -213,7 +197,7 @@
             data: {
                     _token: '<?php echo e(csrf_token()); ?>',
                     order_note:order_note,
-                    
+
                 },
             beforeSend: function () {
                 $('#loading').show();
@@ -228,6 +212,6 @@
             },
         });
     }
-    
+
 </script>
 <?php /**PATH C:\xampp\htdocs\drdeo\resources\views/layouts/front-end/partials/cart_details.blade.php ENDPATH**/ ?>

@@ -284,7 +284,7 @@ class OrderManager
             'billing_address' => $billing_address_id,
             'billing_address_data' => ShippingAddress::find($billing_address_id),
             'shipping_cost' => CartManager::get_shipping_cost($data['cart_group_id']),
-            'shipping_method_id' => CartShipping::where(['cart_group_id' => $cart_group_id])->first()->shipping_method_id,
+            'shipping_method_id' => 0,
             'created_at' => now(),
             'updated_at' => now(),
             'order_note' => $order_note

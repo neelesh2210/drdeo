@@ -203,10 +203,10 @@ class WebController extends Controller
     public function checkout_details(Request $request)
     {
         $cart_group_ids = CartManager::get_cart_group_ids();
-        if (CartShipping::whereIn('cart_group_id', $cart_group_ids)->count() != count($cart_group_ids)) {
-            Toastr::info(translate('select_shipping_method_first'));
-            return redirect('shop-cart');
-        }
+        // if (CartShipping::whereIn('cart_group_id', $cart_group_ids)->count() != count($cart_group_ids)) {
+        //     Toastr::info(translate('select_shipping_method_first'));
+        //     return redirect('shop-cart');
+        // }
 
         if (count($cart_group_ids) > 0) {
             return view('web-views.checkout-shipping');
@@ -220,10 +220,10 @@ class WebController extends Controller
     public function checkout_payment()
     {
         $cart_group_ids = CartManager::get_cart_group_ids();
-        if (CartShipping::whereIn('cart_group_id', $cart_group_ids)->count() != count($cart_group_ids)) {
-            Toastr::info(translate('select_shipping_method_first'));
-            return redirect('shop-cart');
-        }
+        // if (CartShipping::whereIn('cart_group_id', $cart_group_ids)->count() != count($cart_group_ids)) {
+        //     Toastr::info(translate('select_shipping_method_first'));
+        //     return redirect('shop-cart');
+        // }
 
         if (session()->has('address_id') && count($cart_group_ids) > 0) {
             return view('web-views.checkout-payment');
