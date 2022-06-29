@@ -141,7 +141,7 @@
                                     <div class="col-md-6">
                                         <label for="name">Disease</label>
                                         <select name="disease[]" class="js-example-basic-multiple js-states js-example-responsive form-control" id="disease" required multiple>
-                                            <option value="">Select Disease</option>
+                                            <option value="" disabled>Select Disease</option>
                                             <?php $__currentLoopData = App\Model\Disease::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $disease): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <option value="<?php echo e($disease->id); ?>"><?php echo e($disease->name); ?></option>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

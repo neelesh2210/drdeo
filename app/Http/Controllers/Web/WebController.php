@@ -437,7 +437,7 @@ class WebController extends Controller
         }
 
         if ($request['data_from'] == 'disease') {
-            $query = Product::where('disease', 'LIKE', '%'.$request['id'].'%');
+            $query = Product::whereJsonContains('disease',$request['id']);
 
             if ($request['sort_by'] == 'latest') {
                 $fetched = $query->latest();

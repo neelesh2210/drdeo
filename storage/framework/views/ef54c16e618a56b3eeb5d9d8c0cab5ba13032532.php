@@ -211,7 +211,7 @@
         }
 
 
-        
+
 .hm-topCategoriesMobile {
    position: relative
 }
@@ -234,7 +234,7 @@
     width: 98%;
     margin-left: 7px;
     padding-bottom: 15px;
-      
+
    }
    .hm-topCategoriesMobile .categoryItem>a {
       height: 140px;
@@ -331,7 +331,7 @@
          <div class="hm-section hm-topCategoriesMobile">
              <div class="row cat-border">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 hm-sectionTitle"><h2>Top Categories</h2></div>
-               
+
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <a  style="float:right;" class="btn btn-outline-accent btn-sm viw-btn-a cat"
                        href="https://drdeo.co.in/categories">
@@ -365,7 +365,7 @@
          <div class="hm-section hm-topCategoriesMobile">
             <div class="row cat-border">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6  hm-sectionTitle"><h2>SHOP BY HEALTH CONCERN</h2></div>
-               
+
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <a  style="float:right;" class="btn btn-outline-accent btn-sm viw-btn-a cat"
                        href="<?php echo e(route('products',['data_from'=>'featured','page'=>1])); ?>">
@@ -378,14 +378,14 @@
                 <div class="owl-carousel owl-theme " id="category-slider">
                     <?php $__currentLoopData = $diseases; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $disease): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="categoryItem" data-href="<?php echo e(route('products',['id'=> $disease['slug'],'data_from'=>'disease','page'=>1])); ?>">
-                       <a href="<?php echo e(route('products',['id'=> $disease['slug'],'data_from'=>'disease','page'=>1])); ?>">
+                       <a href="<?php echo e(route('products',['id'=> $disease['id'],'data_from'=>'disease','page'=>1])); ?>">
                           <span class="categoryIcon">
                              <img src="<?php echo e(asset("storage/app/public/disease/$disease->icon")); ?>">
                           </span>
                           <span class="categoryTitle"><?php echo e($disease->name); ?></span>
                        </a>
                     </div>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </div>
          </div>
         </div>
@@ -401,7 +401,7 @@
                     <div class="text-center">
                         <a href="<?php echo e($banner['url']); ?>">
                             <img onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'" src="<?php echo e(asset('storage/app/public/banner')); ?>/<?php echo e($banner['photo']); ?>"></a>
-                            
+
                         </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
@@ -525,7 +525,7 @@
                     </a>
                 </div>
             </div> -->
-       
+
         <!-- Grid-->
             <!-- <div class="row mt-2 mb-3">
                 <?php $__currentLoopData = $featured_products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -544,7 +544,7 @@
         <div class="row">
             
             <div class="col-xl-12">
-               
+
                 <div class="card">
                     <div class="row cat-border">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6  hm-sectionTitle"><h2>FEATURED PRODUCTS</h2></div>
@@ -747,7 +747,7 @@
     </div>
 
     <!-- ======= Latest PRODUCTS END ========-->
-    
+
 
 
     <!-- 
@@ -906,7 +906,7 @@
                         </div>
                     </div>
 
-               
+
                     <!-- Grid-->
                     <div class="row mt-2 mb-3 p-2">
                         <?php $__currentLoopData = $featured_products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -957,7 +957,7 @@
          <div class="hm-section hm-topCategoriesMobile">
             <div class="row cat-border">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6  hm-sectionTitle"><h2>Brands</h2></div>
-               
+
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
                     <a  style="float:right;" class="btn btn-outline-accent btn-sm viw-btn-a cat"
                        href="<?php echo e(route('brands')); ?>">
@@ -994,14 +994,14 @@
                     <div class="text-center">
                         <a href="<?php echo e($banner['url']); ?>">
                         <img onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'" src="<?php echo e(asset('storage/app/public/banner')); ?>/<?php echo e($banner['photo']); ?>"></a>
-                        
+
                     </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                                       
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
     </section>
      <!-- ======= CARD END ========-->
-    
+
     <!-- ======= Best sellings END ========-->
     <!-- <div class="container flash-d mt-3">
         <div class="row">
@@ -1017,7 +1017,7 @@
                     </div>
                     <div class="" style="padding-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>: 0">
                         <div class="row view_all view-btn-div-f float-right mx-0">
-                            
+
                             <div class="">
                                 <a class="btn btn-outline-accent btn-sm viw-btn-a"
                                     href="<?php echo e(route('flash-deals',[isset($flash_deals)?$flash_deals['id']:0])); ?>"><?php echo e(\App\CPU\translate('view_all')); ?>
@@ -1081,7 +1081,7 @@
         <div class="row">
             
             <div class="col-xl-12">
-               
+
                 <div class="card">
                     <div class="row cat-border">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6  hm-sectionTitle"><h2>BEST SELLINGS</h2></div>
@@ -1094,11 +1094,11 @@
                                 </a>
                         </div>
                     </div>
-                   
+
 
 
                    <!-- Grid-->
-           
+
             <div class="row mt-2 mb-3 p-2">
                 <?php $__currentLoopData = $bestSellProduct; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$bestSell): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-xl-2 col-sm-3 col-6" style="margin-bottom: 10px">
@@ -1273,8 +1273,8 @@
             </div>
         </div>
     </section> -->
-    
-  
+
+
 
 
 <?php $__env->stopSection(); ?>
@@ -1580,7 +1580,7 @@
         })
     </script>
 
-    
+
 
 <script>
         $('#bestsell-slider').owlCarousel({

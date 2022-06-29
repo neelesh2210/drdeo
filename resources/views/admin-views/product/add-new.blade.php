@@ -150,7 +150,7 @@
                                     <div class="col-md-6">
                                         <label for="name">Disease</label>
                                         <select name="disease[]" class="js-example-basic-multiple js-states js-example-responsive form-control" id="disease" required multiple>
-                                            <option value="">Select Disease</option>
+                                            <option value="" disabled>Select Disease</option>
                                             @foreach (App\Model\Disease::get() as $disease)
                                                 <option value="{{$disease->id}}">{{$disease->name}}</option>
                                             @endforeach

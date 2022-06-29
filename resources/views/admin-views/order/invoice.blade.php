@@ -2,18 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Invoice | Dr. Deo</title>   
-    <style> 
-	
-	
+    <title>Invoice | Dr. Deo</title>
+    <style>
+
+
 
 body {
   position: relative;
-  width: 25cm!important;  
-  height: 26.2cm!important; 
+  width: 25cm!important;
+  height: 26.2cm!important;
   color: #001028;
-  background: #FFFFFF; 
-  font-family: 'Titillium Web', sans-serif!important; 
+  background: #FFFFFF;
+  font-family: 'Titillium Web', sans-serif!important;
 }
 ul {
     list-style-type: none;
@@ -77,23 +77,23 @@ h1{font-weight:100px;letter-spacing: 0.2px;}
 <div class="tax1">
   			<p style="font-size: 14px;"><b>TAX INVOICE</b></p>
   		</div>
-		 
+
   	<header style="margin-top: 3%;">
-	 
+
   		<div class="details">
 		  <p style="font-size: 12px;"><strong><b>Sold By:</b> </strong> <b>Dr. Deo Homeo Private Limited</b></p>
 		  <p style="font-size: 11px;"><strong><b>Ship- from Address:</b> </strong> Nageshwar Colony, Bakerganj Bari Road, <br>Patna - 800004 (Bihar)</p>
 		  <p style="font-size: 11px;"><strong><b>GSTIN:</b> </strong> 10abcd4182G1z6</p>
-		 
+
   		</div>
-  		
+
   		<div class="invoicenum">
-		
+
 		  <p style="font-size: 11px;"><strong><b>DL No:</b> </strong> abcd4182G1</p>
 		  <p style="font-size: 11px;"><strong><b>PAN No:</b> </strong> abcd4182G1</p>
-		  <p style="font-size: 11px;"><strong><b>CIN No:</b> </strong> U24234BR1999PTC008949</p>	
-			
-			<!--   			
+		  <p style="font-size: 11px;"><strong><b>CIN No:</b> </strong> U24234BR1999PTC008949</p>
+
+			<!--
   			<p style="font-size: 14px;"><b>Invoice Number - </b><span>{{ $order->id }}</span></p>
   			<p style="font-size: 14px;"><b>Invoice Date -</b> <span>{{date('d-m-Y',strtotime($order['created_at']))}}</span></p>
   			 -->
@@ -111,34 +111,34 @@ h1{font-weight:100px;letter-spacing: 0.2px;}
 			 }else{
 				$tac_status = 0;
 			 }
-		
+
 			 @endphp
 		  </div>
 		  <div style="width: 36%;position: relative; float: left;">
-		  <p style="font-size: 11px;"><strong><b>Bill To:</b> </strong> 
+		  <p style="font-size: 11px;"><strong><b>Bill To:</b> </strong>
 		   <br><b> {{$order->billingAddress ? $order->billingAddress['contact_person_name'] : ""}} </b>
 		   <br>{{$order->billingAddress ? $order->billingAddress['address'] : ""}}{{$order->billingAddress ? $order->billingAddress['city'] : ""}} {{$order->billingAddress ? $order->billingAddress['zip'] : ""}}{{$order->billingAddress ? $order->billingAddress['state'] : ""}}
 		   <br>State Code- {{$codde->code}}</p>
 		  </div>
 		  <div style="width: 36%;position: relative; float: left;">
-		  <p style="font-size: 11px;"><strong><b>Ship To:</b> </strong> 
+		  <p style="font-size: 11px;"><strong><b>Ship To:</b> </strong>
 		   <br><b> {{$order->customer['f_name'].' '.$order->customer['l_name']}} </b>
 		   <br>{{$order->shippingAddress ? $order->shippingAddress['address'] : ""}}{{$order->shippingAddress ? $order->shippingAddress['city'] : ""}} {{$order->shippingAddress ? $order->shippingAddress['zip'] : ""}}{{$order->shippingAddress ? $order->shippingAddress['state'] : ""}}
 		   <br>State Code- {{$codde->code}}</p>
 		  </div>
-		  
+
   	</header>
-	      
+
 	  @if ($order->order_type == 'default_type')
-  
+
 	  @else
 	  <table class="content-position-y" style="width: 100%">
 		<tr>
 			<td valign="top">
 				<span class="h1" style="margin: 0px;">{{\App\CPU\translate('POS_order')}} </span>
-				
+
 			</td>
-			
+
 		</tr>
 	</table>
 	  @endif
@@ -166,18 +166,18 @@ h1{font-weight:100px;letter-spacing: 0.2px;}
 		@endphp
 		@foreach($order->details as $key=>$details)
 		@php $subtotal=($details['price'])*$details->qty @endphp
-		@php 
+		@php
 		if($taxnumbe <= $details['product']->tax){
-		  $taxnumbe=$details['product']->tax; 
-		}    
+		  $taxnumbe=$details['product']->tax;
+		}
 		@endphp
 			<tr class="border">
 			   <td style="padding:10px 0px 10px 10px;">
-					  
-			 <h1> Expire Date: {{$details['product']?$details['product']->exp:''}}	</h1> <br>
-			 <h1> Batch No: {{$details['product']?$details['product']->batch:''}}	</h1> <br>
+
+			 <h1> Expire Date: {{$details->expiry_date}}	</h1> <br>
+			 <h1> Batch No: {{$details->batch_number}}	</h1> <br>
 			 <h1> HSN Cod:  {{$details['product']?$details['product']->hsn:''}}	 </h1><br>
-			  
+
 			  </td>
 			  <td style="padding:8px 0px 8px 10px;font-size: 18px;"><h1>{{$details['product']?$details['product']->name:''}}<br> {{\App\CPU\translate('variation')}} : {{$details['variant']}}</h1></td>
 			  <td style="text-align: center;font-size: 18px;"><h1><b>{{\App\CPU\BackEndHelper::usd_to_currency($details['price'])}}</b></h1></td>
@@ -193,7 +193,7 @@ h1{font-weight:100px;letter-spacing: 0.2px;}
 			  @php
 			  $tttt=$subtotal+($subtotal/100)*$details['product']->tax;
 			  @endphp
-			  <td style="text-align: center;font-size: 18px;"><h1>{{\App\CPU\BackEndHelper::usd_to_currency($tttt)}}</h1></td>
+			  <td style="text-align: center;font-size: 18px;"><h1>{{\App\CPU\BackEndHelper::usd_to_currency($subtotal)}}</h1></td>
 			 </tr>
 			 @php
 			$sub_total+=$details['price']*$details['qty'];
@@ -203,14 +203,14 @@ h1{font-weight:100px;letter-spacing: 0.2px;}
 			$total+=$subtotal;
 		@endphp
 	@endforeach
-  
+
 	<?php
 	  if ($order['extra_discount_type'] == 'percent') {
 		  $extra_discount = ($sub_total / 100) * $order['extra_discount'];
 	  } else {
 		  $extra_discount = $order['extra_discount'];
 	  }
-	  
+
   ?>
   @php($shipping=$order['shipping_cost'])
 		<tr>
@@ -221,11 +221,11 @@ h1{font-weight:100px;letter-spacing: 0.2px;}
 			  <br>
 			  <br>
 			  <br>
-			
+
 			  </td>
-		
+
 			  <td colspan="3" style="font-size:20px; padding-left:20px;">
-			 
+
 			  </td>
 
 			  <td colspan="2" style="padding:20px 0px 10px 10px; border:1px solid black;border-top:0px; border-right:0px;border-bottom:0px;font-size: 18px;">
@@ -234,47 +234,47 @@ h1{font-weight:100px;letter-spacing: 0.2px;}
 				<br><h1><b> Coupon Discount (₹)</b></h1>
 			  </td>
 			  <td style="text-align: center;padding:0px 0px 10px 10px; border:1px solid black; border-top:0px;border-left:0px;border-bottom:0px;font-size: 18px;">
-			
-			   <h1>{{\App\CPU\BackEndHelper::usd_to_currency($sub_total)}}</h1>   
+
+			   <h1>{{\App\CPU\BackEndHelper::usd_to_currency($sub_total)}}</h1>
 			    <br><h1>{{\App\CPU\BackEndHelper::usd_to_currency($total_tax+($shipping/100)*$taxnumbe)}}</h1>
 				<br><h1>-{{\App\CPU\BackEndHelper::usd_to_currency($order->discount_amount)}}</h1>
 			  </td>
 		</tr>
 		<tr>
 			  <td rowspan="2" style="text-align:center;border:1px solid black; padding:20px 0px 20px 20px; width:650px;">
-				  
+
 				  <img  src="{{asset("public/assets/front-end/img/signn.jpeg")}}" style="text-align:center; width:350px;height:130px; margin-bottom:20px;">
-			  
+
 				<br>  <h1 style="font-size:28px;"><b>Authorized Signatory</b></h1>
 			  <br>
 			  <h1 style="font-size:25px;"><b>Dr. Deo Homeo Private Limited</b></h1>
 			  </td>
 
-			
+
 			  <td rowspan="2" colspan="4">
 			  <br>
-			  
+
 			  <img  src="{{asset("public/assets/front-end/img/thanku2.jpg")}}" style="text-align:center;margin-left:30px;padding:20px; width:450px;border:1px solid black;">
 			  </td>
 			  <td colspan="2" style="border:1px solid black; border-right:0px;padding:15px 0px 15px 10px;font-size: 20px;"><h1><b>Grand Total (₹) </b></h1></td>
-			  <td   style="text-align: center;border:1px solid black; border-left:0px;padding:15px 0px 15px 10px;width:200px;font-size: 18px;"><h1><b>{{\App\CPU\BackEndHelper::usd_to_currency($order->order_amount)}}</b></h1></td>
+			  <td   style="text-align: center;border:1px solid black; border-left:0px;padding:15px 0px 15px 10px;width:200px;font-size: 18px;"><h1><b>{{\App\CPU\BackEndHelper::usd_to_currency($sub_total)}}</b></h1></td>
 		</tr>
 		<tr>
-			 
+
 			  <td colspan="2" style="border:1px solid black; border-right:0px;padding:15px 0px 15px 10px;border-top:0px;font-size: 20px;"><h1><b>Payment Method: </b></h1></td>
 			  <td style="text-align: center;border:1px solid black; border-left:0px;padding:15px 0px 15px 10px;border-top:0px;width:200px;font-size: 24px;"><h1><b>{{ str_replace('_',' ',$order->payment_method) }} </b></h1></td>
 		</tr>
-  
-		
+
+
 		  </table>
 		</div>
-		
-		<div style="width: 100%; margin-top:10px;"> 
+
+		<div style="width: 100%; margin-top:10px;">
 		<hr>
 		</div>
 
-	
-	
-		
+
+
+
 	</body>
   </html>

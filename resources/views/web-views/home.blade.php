@@ -213,7 +213,7 @@
         }
 
 
-        
+
 .hm-topCategoriesMobile {
    position: relative
 }
@@ -236,7 +236,7 @@
     width: 98%;
     margin-left: 7px;
     padding-bottom: 15px;
-      
+
    }
    .hm-topCategoriesMobile .categoryItem>a {
       height: 140px;
@@ -333,7 +333,7 @@
          <div class="hm-section hm-topCategoriesMobile">
              <div class="row cat-border">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 hm-sectionTitle"><h2>Top Categories</h2></div>
-               
+
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <a  style="float:right;" class="btn btn-outline-accent btn-sm viw-btn-a cat"
                        href="https://drdeo.co.in/categories">
@@ -366,7 +366,7 @@
          <div class="hm-section hm-topCategoriesMobile">
             <div class="row cat-border">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6  hm-sectionTitle"><h2>SHOP BY HEALTH CONCERN</h2></div>
-               
+
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <a  style="float:right;" class="btn btn-outline-accent btn-sm viw-btn-a cat"
                        href="{{route('products',['data_from'=>'featured','page'=>1])}}">
@@ -378,14 +378,14 @@
                 <div class="owl-carousel owl-theme " id="category-slider">
                     @foreach($diseases as $disease)
                     <div class="categoryItem" data-href="{{route('products',['id'=> $disease['slug'],'data_from'=>'disease','page'=>1])}}">
-                       <a href="{{route('products',['id'=> $disease['slug'],'data_from'=>'disease','page'=>1])}}">
+                       <a href="{{route('products',['id'=> $disease['id'],'data_from'=>'disease','page'=>1])}}">
                           <span class="categoryIcon">
                              <img src="{{asset("storage/app/public/disease/$disease->icon")}}">
                           </span>
                           <span class="categoryTitle">{{$disease->name}}</span>
                        </a>
                     </div>
-                    @endforeach  
+                    @endforeach
           </div>
          </div>
         </div>
@@ -401,7 +401,7 @@
                     <div class="text-center">
                         <a href="{{$banner['url']}}">
                             <img onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" src="{{asset('storage/app/public/banner')}}/{{$banner['photo']}}"></a>
-                            
+
                         </div>
         @endforeach
             </div>
@@ -521,7 +521,7 @@
                     </a>
                 </div>
             </div> -->
-       
+
         <!-- Grid-->
             <!-- <div class="row mt-2 mb-3">
                 @foreach($featured_products as $product)
@@ -540,7 +540,7 @@
         <div class="row">
             {{-- Latest products --}}
             <div class="col-xl-12">
-               
+
                 <div class="card">
                     <div class="row cat-border">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6  hm-sectionTitle"><h2>FEATURED PRODUCTS</h2></div>
@@ -731,7 +731,7 @@
     </div>
 
     <!-- ======= Latest PRODUCTS END ========-->
-    
+
 
 
     <!-- {{--categries--}}
@@ -878,7 +878,7 @@
                         </div>
                     </div>
 
-               
+
                     <!-- Grid-->
                     <div class="row mt-2 mb-3 p-2">
                         @foreach($featured_products as $product)
@@ -928,7 +928,7 @@
          <div class="hm-section hm-topCategoriesMobile">
             <div class="row cat-border">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6  hm-sectionTitle"><h2>Brands</h2></div>
-               
+
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
                     <a  style="float:right;" class="btn btn-outline-accent btn-sm viw-btn-a cat"
                        href="{{route('brands')}}">
@@ -964,14 +964,14 @@
                     <div class="text-center">
                         <a href="{{$banner['url']}}">
                         <img onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" src="{{asset('storage/app/public/banner')}}/{{$banner['photo']}}"></a>
-                        
+
                     </div>
-                @endforeach                                       
+                @endforeach
             </div>
         </div>
     </section>
      <!-- ======= CARD END ========-->
-    
+
     <!-- ======= Best sellings END ========-->
     <!-- <div class="container flash-d mt-3">
         <div class="row">
@@ -987,7 +987,7 @@
                     </div>
                     <div class="" style="padding-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 0">
                         <div class="row view_all view-btn-div-f float-right mx-0">
-                            
+
                             <div class="">
                                 <a class="btn btn-outline-accent btn-sm viw-btn-a"
                                     href="{{route('flash-deals',[isset($flash_deals)?$flash_deals['id']:0])}}">{{ \App\CPU\translate('view_all')}}
@@ -1047,7 +1047,7 @@
         <div class="row">
             {{-- Latest products --}}
             <div class="col-xl-12">
-               
+
                 <div class="card">
                     <div class="row cat-border">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6  hm-sectionTitle"><h2>BEST SELLINGS</h2></div>
@@ -1059,11 +1059,11 @@
                                 </a>
                         </div>
                     </div>
-                   
+
 
 
                    <!-- Grid-->
-           
+
             <div class="row mt-2 mb-3 p-2">
                 @foreach($bestSellProduct as $key=>$bestSell)
                     <div class="col-xl-2 col-sm-3 col-6" style="margin-bottom: 10px">
@@ -1226,8 +1226,8 @@
             </div>
         </div>
     </section> -->
-    
-  
+
+
 
 
 @endsection
@@ -1533,7 +1533,7 @@
         })
     </script>
 
-    
+
 
 <script>
         $('#bestsell-slider').owlCarousel({
