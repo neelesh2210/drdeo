@@ -112,6 +112,7 @@ Route::group(['namespace' => 'api\v2', 'prefix' => 'v2'], function () {
         Route::post('get_doctor_slot', [CustomerController::class, 'getDoctorSlot']);
         Route::post('doctor_slot_booking', [CustomerController::class, 'doctorSlotBooking']);
         Route::post('customer_booking_histories', [CustomerController::class, 'customerBookingHistories']);
+        Route::post('doctor_search', [CustomerController::class, 'doctorSearch']);
 
     });
 

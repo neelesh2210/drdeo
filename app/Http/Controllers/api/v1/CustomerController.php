@@ -279,7 +279,13 @@ class CustomerController extends Controller
 
     public function getDoctorList(Request $request)
     {
-        $list=Doctor::where('status',1)->with('doctor_profile')->paginate(15,['id','name','email','phone_number']);
+        $specialization=$request->specialization;
+        //$list=Doctor::where('status',1)->with(["doctor_profile" => function($q) use ($specialization){$q->where('specialization', $specialization);}])->paginate(15,['id','name','email','phone_number']);
+
+        $list=Doctor::where('status',1)->whereHas('doctor_profile', function ($query) use ($specialization){
+            return $query->where('specialization',$specialization);
+        })->paginate(15,['id','name','email','phone_number']);
+
 
         foreach($list as $data)
         {
@@ -472,6 +478,67 @@ class CustomerController extends Controller
     public function customerBookingHistories(Request $request)
     {
         return $list=DoctorSlotBooking::where('customer_id',Auth::user()->id)->with('doctor')->with('doctor_profile')->paginate(20);
+    }
+
+    public function doctorSearch(Request $request)
+    {
+        $key=$request->key;
+        $experience=$request->experience;
+        $city=$request->city;
+        //$list=Doctor::where('status',1)->with(["doctor_profile" => function($q) use ($specialization){$q->where('specialization', $specialization);}])->paginate(15,['id','name','email','phone_number']);
+
+        //$list=Doctor::where('status',1)->whereHas('doctor_profile', function ($query) use ($specialization){return $query->where('specialization',$specialization);})->paginate(15,['id','name','email','phone_number']);
+
+        $list=Doctor::where('status',1);
+        if(!empty($key))
+        {
+            $list=$list->where(function ($query) use ($key){
+                $query->orWhere('name','like','%'.$key.'%');
+            })->orwhereHas('doctor_profile', function ($query) use ($key){
+                return $query->where('specialization',$key);
+            });
+        }
+        if(!empty($experience))
+        {
+            $list=$list->whereHas('doctor_profile', function ($query) use ($experience){
+                return $query->where('experience',$experience);
+            });
+        }
+        if(!empty($city))
+        {
+            $list=$list->whereHas('doctor_profile', function ($query) use ($city){
+                return $query->where('city',$city);
+            });
+        }
+
+        $list=$list->paginate(15,['id','name','email','phone_number']);
+
+
+        foreach($list as $data)
+        {
+            if(!empty($data->doctor_profile->adhar_card))
+            {
+                $data->doctor_profile->adhar_card=asset('doctor_documents/'.$data->doctor_profile->adhar_card);
+            }
+            if(!empty($data->doctor_profile->pan_card))
+            {
+                $data->doctor_profile->pan_card=asset('doctor_documents/'.$data->doctor_profile->pan_card);
+            }
+            if(!empty($data->doctor_profile->degree))
+            {
+                $data->doctor_profile->degree=asset('doctor_documents/'.$data->doctor_profile->degree);
+            }
+            if(!empty($data->doctor_profile->registration_document))
+            {
+                $data->doctor_profile->registration_document=asset('doctor_documents/'.$data->doctor_profile->registration_document);
+            }
+            if(!empty($data->doctor_profile->profile_photo))
+            {
+                $data->doctor_profile->profile_photo=asset('doctor_documents/'.$data->doctor_profile->profile_photo);
+            }
+        }
+
+        return $list;
     }
 
 }
