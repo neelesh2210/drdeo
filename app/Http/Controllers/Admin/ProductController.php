@@ -70,34 +70,32 @@ class ProductController extends BaseController
 
     public function store(Request $request)
     {
+        //return $request->all();
         $validator = Validator::make($request->all(), [
             'category_id' => 'required',
             'brand_id' => 'required',
             'images' => 'required',
             'tax' => 'required|min:0',
-            'unit_price' => 'required|numeric|min:1',
-            'purchase_price' => 'required|numeric|min:1',
             'discount' => 'required|gt:-1'
         ], [
             'images.required' => 'Product images is required!',
             'category_id.required' => 'category  is required!',
             'brand_id.required' => 'brand  is required!',
-            'unit.required' => 'Unit  is required!',
         ]);
 
-        if ($request['discount_type'] == 'percent') {
-            $dis = ($request['unit_price'] / 100) * $request['discount'];
-        } else {
-            $dis = $request['discount'];
-        }
+        // if ($request['discount_type'] == 'percent') {
+        //     $dis = ($request['unit_price'] / 100) * $request['discount'];
+        // } else {
+        //     $dis = $request['discount'];
+        // }
 
-        if ($request['unit_price'] <= $dis) {
-            $validator->after(function ($validator) {
-                $validator->errors()->add(
-                    'unit_price', 'Discount can not be more or equal to the price!'
-                );
-            });
-        }
+        // if ($request['unit_price'] <= $dis) {
+        //     $validator->after(function ($validator) {
+        //         $validator->errors()->add(
+        //             'unit_price', 'Discount can not be more or equal to the price!'
+        //         );
+        //     });
+        // }
 
 
         $p = new Product();
@@ -195,7 +193,9 @@ class ProductController extends BaseController
                 }
                 $item = [];
                 $item['type'] = $str;
-                $item['price'] = BackEndHelper::currency_to_usd(abs($request['price_' . str_replace('.', '_', $str)]));
+                $item['price'] = BackEndHelper::currency_to_usd(abs($request['selling_price_' . str_replace('.', '_', $str)]));
+                $item['mrp_price'] = BackEndHelper::currency_to_usd(abs($request['mrp_price' . str_replace('.', '_', $str)]));
+                $item['selling_price_'] = BackEndHelper::currency_to_usd(abs($request['selling_price_' . str_replace('.', '_', $str)]));
                 $item['sku'] = $request['sku_' . str_replace('.', '_', $str)];
                 $item['qty'] = abs($request['qty_' . str_replace('.', '_', $str)]);
                 array_push($variations, $item);

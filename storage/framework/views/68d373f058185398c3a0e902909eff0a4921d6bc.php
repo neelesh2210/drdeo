@@ -6,7 +6,10 @@
 					<label for="" class="control-label"><?php echo e(\App\CPU\translate('Variant')); ?></label>
 				</td>
 				<td class="text-center">
-					<label for="" class="control-label"><?php echo e(\App\CPU\translate('Variant Price')); ?></label>
+					<label for="" class="control-label"><?php echo e(\App\CPU\translate('MRP Price')); ?></label>
+				</td>
+                <td class="text-center">
+					<label for="" class="control-label"><?php echo e(\App\CPU\translate('Selling Price')); ?></label>
 				</td>
 				<td class="text-center">
 					<label for="" class="control-label"><?php echo e(\App\CPU\translate('SKU')); ?></label>
@@ -51,7 +54,10 @@
 					<label for="" class="control-label"><?php echo e($str); ?></label>
 				</td>
 				<td>
-					<input type="number" name="price_<?php echo e($str); ?>" value="<?php echo e($unit_price); ?>" min="0" step="0.01" class="form-control" required>
+					<input type="number" name="mrp_price_<?php echo e($str); ?>" value="<?php echo e($unit_price); ?>" min="0" step="0.01" class="form-control" required>
+				</td>
+                <td>
+					<input type="number" name="selling_price_<?php echo e($str); ?>" value="<?php echo e($unit_price); ?>" min="0" step="0.01" class="form-control" required>
 				</td>
 				<td>
 					<input type="text" name="sku_<?php echo e($str); ?>" value="<?php echo e($sku); ?>" class="form-control" required>

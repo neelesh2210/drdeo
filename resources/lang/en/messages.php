@@ -1655,4 +1655,5 @@
   'Doctor Verified' => 'Doctor Verified',
   'Doctor Not Verified' => 'Doctor Not Verified',
   'total_price1' => 'Total price1',
+  'Selling Price' => 'Selling Price',
 );
