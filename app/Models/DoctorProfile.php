@@ -36,4 +36,9 @@ class DoctorProfile extends Model
         return $this->belongsTo(Doctor::class);
     }
 
+    public function doctor_category()
+    {
+        return $this->belongsTo(DoctorCategory::class,'specialization');
+    }
+
 }

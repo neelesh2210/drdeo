@@ -19,6 +19,9 @@ class DoctorProfileController extends Controller
     public function getDocotorProfile()
     {
         $data=Doctor::where('id',Auth::user()->id)->with('doctor_profile')->first();
+
+        $doctor->doctor_profile->specialization=DoctorCategory::where('id',$doctor->doctor_profile->specialization)->first();
+        
         if(!empty($data->doctor_profile->adhar_card))
         {
             $data->doctor_profile->adhar_card=asset('public/doctor_documents/'.$data->doctor_profile->adhar_card);
@@ -90,6 +93,8 @@ class DoctorProfileController extends Controller
         }
 
         $doctor=Doctor::where('id',Auth::user()->id)->with('doctor_profile')->first();
+
+        $doctor->doctor_profile->specialization=DoctorCategory::where('id',$doctor->doctor_profile->specialization)->first();
 
         if(!empty($doctor->doctor_profile->adhar_card))
         {
