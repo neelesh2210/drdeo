@@ -20,8 +20,8 @@ class DoctorProfileController extends Controller
     {
         $data=Doctor::where('id',Auth::user()->id)->with('doctor_profile')->first();
 
-        $doctor->doctor_profile->specialization=DoctorCategory::where('id',$doctor->doctor_profile->specialization)->first();
-        
+        $data->doctor_profile->specialization=DoctorCategory::where('id',$data->doctor_profile->specialization)->first();
+
         if(!empty($data->doctor_profile->adhar_card))
         {
             $data->doctor_profile->adhar_card=asset('public/doctor_documents/'.$data->doctor_profile->adhar_card);
