@@ -45,11 +45,11 @@
                                                 <b>Name: </b><?php echo e($data->name); ?> <br>
                                                 <b>Email: </b><?php echo e($data->email); ?> <br>
                                                 <b>Phone: </b><?php echo e($data->phone_number); ?> <br>
-                                                <b>Specialization: </b><?php echo e($data->doctor_profile->specialization); ?> <br>
-                                                <b>Designation: </b><?php echo e($data->doctor_profile->designation); ?> <br>
-                                                <b>Experience: </b><?php echo e($data->doctor_profile->experience); ?> <br>
-                                                <b>Degree Name: </b><?php echo e($data->doctor_profile->degree_name); ?> <br>
-                                                <b>Address: </b><?php echo e($data->doctor_profile->address); ?> <br>
+                                                <b>Specialization: </b><?php echo e(optional($data->doctor_profile)->specialization); ?> <br>
+                                                <b>Designation: </b><?php echo e(optional($data->doctor_profile)->designation); ?> <br>
+                                                <b>Experience: </b><?php echo e(optional($data->doctor_profile)->experience); ?> <br>
+                                                <b>Degree Name: </b><?php echo e(optional($data->doctor_profile)->degree_name); ?> <br>
+                                                <b>Address: </b><?php echo e(optional($data->doctor_profile)->address); ?> <br>
                                             </td>
                                             <td>
                                                 <img src="<?php if(!empty($data->doctor_profile->adhar_card)): ?><?php echo e(asset('public/doctor_documents/'.$data->doctor_profile->adhar_card)); ?> <?php else: ?> https://tallyfy.com/wp-content/uploads/no-documents.png <?php endif; ?>" style="width: 100px;height: 100px;">

@@ -46,11 +46,11 @@
                                                 <b>Name: </b>{{$data->name}} <br>
                                                 <b>Email: </b>{{$data->email}} <br>
                                                 <b>Phone: </b>{{$data->phone_number}} <br>
-                                                <b>Specialization: </b>{{$data->doctor_profile->specialization}} <br>
-                                                <b>Designation: </b>{{$data->doctor_profile->designation}} <br>
-                                                <b>Experience: </b>{{$data->doctor_profile->experience}} <br>
-                                                <b>Degree Name: </b>{{$data->doctor_profile->degree_name}} <br>
-                                                <b>Address: </b>{{$data->doctor_profile->address}} <br>
+                                                <b>Specialization: </b>{{optional($data->doctor_profile)->specialization}} <br>
+                                                <b>Designation: </b>{{optional($data->doctor_profile)->designation}} <br>
+                                                <b>Experience: </b>{{optional($data->doctor_profile)->experience}} <br>
+                                                <b>Degree Name: </b>{{optional($data->doctor_profile)->degree_name}} <br>
+                                                <b>Address: </b>{{optional($data->doctor_profile)->address}} <br>
                                             </td>
                                             <td>
                                                 <img src="@if(!empty($data->doctor_profile->adhar_card)){{asset('public/doctor_documents/'.$data->doctor_profile->adhar_card)}} @else https://tallyfy.com/wp-content/uploads/no-documents.png @endif" style="width: 100px;height: 100px;">
